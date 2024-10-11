@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Blanka';
+  src: url('/fonts/blanka/Blanka.otf');
+}
+
 body {
   margin: 0px;
   overflow: hidden;
