@@ -21,7 +21,7 @@ class Parallelogram {
       this.element.style.transform = `skew(64deg) rotate(32deg) translate(${this.position}px)`;
 
       if (this.position > window.innerWidth) {
-        this.position = -resetAmount; // Reset to the start
+        this.position = -this.resetAmount; // Reset to the start
       }
 
       this.lastTimestamp = timestamp;
