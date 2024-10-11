@@ -59,7 +59,7 @@ function createParallelograms() {
     parallelogramToCreate2.classList.add("parallelogram");
     let newParallelogram2 = document.body.insertBefore(parallelogramToCreate2, document.body.firstChild);
     let upAmount2 = window.innerHeight*16;
-    upAmount2 -= 32*j;
+    upAmount2 -= 32*i;
     newParallelogram2.style.top = -upAmount2+"px";
     let newWidth2 = getRandomFloat(192, 384);
     newParallelogram2.style.width = newWidth2+"px";
