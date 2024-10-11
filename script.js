@@ -1,3 +1,8 @@
+//Constants
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const textObject =   document.getElementById('date');
+
+//Animation
 class Parallelogram {
   constructor(element, position) {
     this.element = element;
@@ -76,3 +81,14 @@ observer.observe(document.body, {
   childList: true,
   subtree: true // Observe all child elements, not just direct children
 });
+
+//Date
+function setDateText(){
+  let d = new Date();
+  let data = months[d.getMonth()];
+  data = data + " " + d.getDate();
+  textObject.innerHTML = data;
+}
+
+setDateText();
+setInterval(setDateText, 500);
