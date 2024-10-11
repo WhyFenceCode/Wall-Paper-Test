@@ -10,8 +10,6 @@ class Parallelogram {
     this.position = position;
     this.resetAmount = resetAmount;
     this.lastTimestamp = null;
-
-    console.log(this.position);
     
     requestAnimationFrame(this.updatePosition.bind(this));
   }
@@ -81,7 +79,7 @@ function createParallelograms() {
 // Function to create a new Parallelogram instance for each element
 function createParallelogramAnimations() {
   const elements = document.querySelectorAll('.parallelogram');
-  elements.forEach(element => new Parallelogram(element, parseFloat(element.getAttribute("data-position")), element.style.width+20));
+  elements.forEach(element => new Parallelogram(element, parseFloat(element.getAttribute("data-position")), parseFloat(element.style.width)+20.0));
 }
 
 // Initial creation of parallelograms
@@ -93,7 +91,7 @@ const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node, parseFloat(node.getAttribute("data-position")), node.style.width+20);
+        new Parallelogram(node, parseFloat(node.getAttribute("data-position")), parseFloat(node.style.width)+20.0);
       }
     });
   });
