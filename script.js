@@ -51,7 +51,6 @@ function createParallelograms() {
     let newParallelogram = document.body.insertBefore(parallelogramToCreate, document.body.firstChild);
     let upAmount = window.innerHeight*16;
     upAmount -= 32*i;
-    console.log(upAmount);
     newParallelogram.style.top = -upAmount+"px";
     let newWidth = getRandomFloat(256, 512);
     newParallelogram.style.width = newWidth+"px";
@@ -62,7 +61,6 @@ function createParallelograms() {
     let newParallelogram = document.body.insertBefore(parallelogramToCreate, document.body.firstChild);
     let upAmount = window.innerHeight*16;
     upAmount -= 32*j;
-    console.log(upAmount);
     newParallelogram.style.top = -upAmount+"px";
     let newWidth = getRandomFloat(256, 512);
     newParallelogram.style.width = newWidth+"px";
