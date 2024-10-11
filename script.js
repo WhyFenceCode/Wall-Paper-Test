@@ -11,8 +11,6 @@ class Parallelogram {
     this.resetAmount
     this.lastTimestamp = null;
 
-    console.log(resetAmount);
-
     requestAnimationFrame(this.updatePosition.bind(this));
   }
 
@@ -23,7 +21,7 @@ class Parallelogram {
       this.element.style.transform = `skew(64deg) rotate(32deg) translate(${this.position}px)`;
 
       if (this.position > window.innerWidth) {
-        this.position = -300; // Reset to the start
+        this.position = -resetAmount; // Reset to the start
       }
 
       this.lastTimestamp = timestamp;
@@ -61,7 +59,7 @@ function createParallelograms() {
     let upAmount = window.innerHeight*16;
     upAmount -= 32*j;
     newParallelogram.style.top = -upAmount+"px";
-    let newWidth = getRandomFloat(256, 512);
+    let newWidth = getRandomFloat(192, 384);
     newParallelogram.style.width = newWidth+"px";
   }
 }
