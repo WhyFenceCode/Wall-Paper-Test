@@ -64,8 +64,13 @@ function createParallelograms() {
     let newWidth2 = getRandomFloat(192, 384);
     newParallelogram2.style.width = newWidth2+"px";
     let newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
+    let loopCount = 0;
     do {
       newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
+      loopCount++;
+      if (loopCount > 50){
+        break;
+      }
     } while (Math.abs(newPosition2 - newPosition) < (32+newWidth));
     newParallelogram2.setAttribute("data-position", newPosition);
   }
