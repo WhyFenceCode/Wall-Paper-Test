@@ -54,6 +54,17 @@ function createParallelograms() {
     let newWidth = getRandomFloat(256, 512);
     newParallelogram.style.width = newWidth+"px";
   }
+  for(var j = 0; j < parallelogramCount; j++){
+    let parallelogramToCreate = document.createElement("div");
+    parallelogramToCreate.classList.add("parallelogram");
+    let newParallelogram = document.body.insertBefore(parallelogramToCreate, document.body.firstChild);
+    let upAmount = window.innerHeight*16;
+    upAmount -= 32*j;
+    console.log(upAmount);
+    newParallelogram.style.top = -upAmount+"px";
+    let newWidth = getRandomFloat(256, 512);
+    newParallelogram.style.width = newWidth+"px";
+  }
 }
 
 // Function to create a new Parallelogram instance for each element
