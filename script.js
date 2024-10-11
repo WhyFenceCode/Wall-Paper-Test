@@ -84,7 +84,7 @@ const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node, getRandomInt(window.innerWidth+20.0, -element.style.width-20.0), -element.style.width-20.0);
+        new Parallelogram(node, getRandomInt(window.innerWidth+20.0, -element.style.width-20.0), element.style.width+20.0);
       }
     });
   });
