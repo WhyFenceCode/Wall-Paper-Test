@@ -70,7 +70,7 @@ function createParallelograms() {
       if (loopCount > 50){
         break;
       }
-    } while (Math.abs(newPosition2 - newPosition) < (28+newWidth));
+    } while (Math.abs(newPosition2 - newPosition) < (36+newWidth));
     newParallelogram2.setAttribute("data-position", newPosition);
   }
 }
