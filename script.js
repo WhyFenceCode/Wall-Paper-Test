@@ -53,7 +53,7 @@ function createParallelograms() {
     let newWidth = getRandomFloat(256, 512);
     newParallelogram.style.width = newWidth+"px";
     let newPosition = getRandomInt(window.innerWidth+20, -newParallelogram.style.width-20);
-    newParallelogram.setAttribute(‘data-position’, newPosition);
+    newParallelogram.setAttributeNode(‘data-position’, newPosition);
     //Paralelogram 2
     let parallelogramToCreate2 = document.createElement("div");
     parallelogramToCreate2.classList.add("parallelogram");
@@ -67,7 +67,7 @@ function createParallelograms() {
     do {
       newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
     } while (Math.abs(newPosition2 - newPosition) < 420);
-    newParallelogram2.setAttribute(‘data-position’, newPosition);
+    newParallelogram2.setAttributeNode(‘data-position’, newPosition);
   }
 }
 
