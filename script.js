@@ -44,7 +44,6 @@ function getRandomFloat(min, max) {
 // Function to create Parallelogram instances
 function createParallelograms() {
   let parallelogramCount = window.innerHeight;
-  console.log(parallelogramCount);
   for(var i = 0; i < parallelogramCount; i++){
     let parallelogramToCreate = document.createElement("div");
     parallelogramToCreate.classList.add("parallelogram");
@@ -70,7 +69,7 @@ function createParallelograms() {
 // Function to create a new Parallelogram instance for each element
 function createParallelogramAnimations() {
   const elements = document.querySelectorAll('.parallelogram');
-  elements.forEach(element => new Parallelogram(element, getRandomInt(window.innerWidth+20, -element.style.width-20), -element.style.width-20));
+  elements.forEach(element => new Parallelogram(element, getRandomInt(window.innerWidth+20, -element.style.width-20), element.style.width+20.0));
 }
 
 // Initial creation of parallelograms
@@ -82,7 +81,7 @@ const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node, getRandomInt(window.innerWidth+20.0, -element.style.width-20.0), element.style.width+20.0);
+        new Parallelogram(node, getRandomInt(window.innerWidth+20.0, -node.style.width-20.0), node.style.width+20.0);
       }
     });
   });
