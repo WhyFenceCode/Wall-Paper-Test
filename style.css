@@ -1,6 +1,8 @@
 @font-face {
   font-family: 'Blanka';
-  src: url('/fonts/blanka/Blanka.otf');
+  src: url('/fonts/blanka/Blanka.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
@@ -20,6 +22,7 @@ body {
 }
 
 .text {
+  font-family: "Blanka";
   font-size: 5em;
   color: rgb(255,255,255);
   mix-blend-mode: difference;
