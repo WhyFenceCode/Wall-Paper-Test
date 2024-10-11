@@ -21,6 +21,7 @@ class Parallelogram {
       this.element.style.transform = `skew(64deg) rotate(32deg) translate(${this.position}px)`;
 
       if (this.position > window.innerWidth) {
+        console.log(-this.resetAmount);
         this.position = -this.resetAmount; // Reset to the start
       }
 
