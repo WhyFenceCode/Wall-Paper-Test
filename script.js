@@ -60,7 +60,7 @@ function createParallelograms() {
     let upAmount2 = window.innerHeight*16;
     upAmount2 -= 32*i;
     newParallelogram2.style.top = -upAmount2+"px";
-    let newWidth2 = getRandomFloat(192, 384);
+    let newWidth2 = getRandomFloat(192, 352);
     newParallelogram2.style.width = newWidth2+"px";
     let newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
     let loopCount = 0;
@@ -70,7 +70,7 @@ function createParallelograms() {
       if (loopCount > 50){
         break;
       }
-    } while (Math.abs(newPosition2 - newPosition) < (32+newWidth));
+    } while (Math.abs(newPosition2 - newPosition) < (28+newWidth));
     newParallelogram2.setAttribute("data-position", newPosition);
   }
 }
