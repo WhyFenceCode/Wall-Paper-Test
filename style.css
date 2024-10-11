@@ -1,1 +1,26 @@
+body {
+  margin: 0px;
+  overflow: hidden;
+  background: white;
+}
 
+.parallelogram {
+  height: 32px;
+  position: fixed;
+  transform-origin: top left;
+  background: rgb(0,0,0);
+  animation-name: move;
+  animation-duration: 20s;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.text {
+  font-size: 5em;
+  color: rgb(255,255,255);
+  mix-blend-mode: difference;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -110%);
+}
