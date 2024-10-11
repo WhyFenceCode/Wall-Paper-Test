@@ -8,11 +8,12 @@ class Parallelogram {
     this.element = element;
     this.speed = 24; // Speed in pixels per second
     this.position = position;
-    this.resetAmount
+    this.resetAmount = resetAmount;
     this.lastTimestamp = null;
 
     console.log(this.resetAmount);
-
+    console.log(this.position);
+    
     requestAnimationFrame(this.updatePosition.bind(this));
   }
 
@@ -81,7 +82,7 @@ function createParallelograms() {
 // Function to create a new Parallelogram instance for each element
 function createParallelogramAnimations() {
   const elements = document.querySelectorAll('.parallelogram');
-  elements.forEach(element => new Parallelogram(element, element.dataset.position, element.style.width+20.0));
+  elements.forEach(element => new Parallelogram(element, element.dataset.position, element.style.width+20));
 }
 
 // Initial creation of parallelograms
@@ -93,7 +94,7 @@ const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node, element.dataset.position, node.style.width+20.0);
+        new Parallelogram(node, element.dataset.position, node.style.width+20);
       }
     });
   });
