@@ -20,8 +20,8 @@ class Parallelogram {
       this.position += (this.speed * delta) / 1000; // Update position based on elapsed time
       this.element.style.transform = `skew(64deg) rotate(32deg) translate(${this.position}px)`;
 
-      if (this.position > window.innerWidth + 20) {
-        this.position = this.resetAmount; // Reset to the start
+      if (this.position > window.innerWidth) {
+        this.position = -300; // Reset to the start
       }
 
       this.lastTimestamp = timestamp;
