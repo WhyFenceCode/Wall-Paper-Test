@@ -4,10 +4,11 @@ const textObject =   document.getElementById('date');
 
 //Animation
 class Parallelogram {
-  constructor(element, position) {
+  constructor(element, position, resetAmount) {
     this.element = element;
     this.speed = 24; // Speed in pixels per second
     this.position = position;
+    this.resetAmount
     this.lastTimestamp = null;
 
     requestAnimationFrame(this.updatePosition.bind(this));
@@ -19,8 +20,8 @@ class Parallelogram {
       this.position += (this.speed * delta) / 1000; // Update position based on elapsed time
       this.element.style.transform = `skew(64deg) rotate(32deg) translate(${this.position}px)`;
 
-      if (this.position > window.innerWidth) {
-        this.position = -364; // Reset to the start
+      if (this.position > window.innerWidth + 20) {
+        this.position = this.resetAmount; // Reset to the start
       }
 
       this.lastTimestamp = timestamp;
@@ -50,7 +51,7 @@ function createParallelograms() {
     upAmount -= 32*i;
     console.log(upAmount);
     newParallelogram.style.top = -upAmount+"px";
-    let newWidth = 256 + getRandomFloat(-64, 64);
+    let newWidth = getRandomFloat(256, 512);
     newParallelogram.style.width = newWidth+"px";
   }
 }
@@ -58,7 +59,7 @@ function createParallelograms() {
 // Function to create a new Parallelogram instance for each element
 function createParallelogramAnimations() {
   const elements = document.querySelectorAll('.parallelogram');
-  elements.forEach(element => new Parallelogram(element, getRandomInt(window.innerWidth + 300), -300));
+  elements.forEach(element => new Parallelogram(element, getRandomInt(window.innerWidth+20, -element.style.width-20), -element.style.width-20));
 }
 
 // Initial creation of parallelograms
@@ -70,7 +71,7 @@ const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node);
+        new Parallelogram(node, getRandomInt(window.innerWidth+20, -element.style.width-20), -element.style.width-20);
       }
     });
   });
