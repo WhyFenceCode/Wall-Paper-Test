@@ -11,7 +11,6 @@ class Parallelogram {
     this.resetAmount = resetAmount;
     this.lastTimestamp = null;
 
-    console.log(this.resetAmount);
     console.log(this.position);
     
     requestAnimationFrame(this.updatePosition.bind(this));
