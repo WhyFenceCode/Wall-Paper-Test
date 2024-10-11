@@ -52,23 +52,29 @@ function createParallelograms() {
     newParallelogram.style.top = -upAmount+"px";
     let newWidth = getRandomFloat(256, 512);
     newParallelogram.style.width = newWidth+"px";
-  }
-  for(var j = 0; j < parallelogramCount; j++){
-    let parallelogramToCreate = document.createElement("div");
-    parallelogramToCreate.classList.add("parallelogram");
-    let newParallelogram = document.body.insertBefore(parallelogramToCreate, document.body.firstChild);
-    let upAmount = window.innerHeight*16;
-    upAmount -= 32*j;
-    newParallelogram.style.top = -upAmount+"px";
-    let newWidth = getRandomFloat(192, 384);
-    newParallelogram.style.width = newWidth+"px";
+    let newPosition = getRandomInt(window.innerWidth+20, -newParallelogram.style.width-20);
+    newParallelogram.setAttribute(‘data-position’, newPosition);
+    //Paralelogram 2
+    let parallelogramToCreate2 = document.createElement("div");
+    parallelogramToCreate2.classList.add("parallelogram");
+    let newParallelogram2 = document.body.insertBefore(parallelogramToCreate2, document.body.firstChild);
+    let upAmount2 = window.innerHeight*16;
+    upAmount2 -= 32*j;
+    newParallelogram2.style.top = -upAmount2+"px";
+    let newWidth2 = getRandomFloat(192, 384);
+    newParallelogram2.style.width = newWidth2+"px";
+    let newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
+    do {
+      newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
+    } while (Math.abs(newPosition2 - newPosition) < 420);
+    newParallelogram2.setAttribute(‘data-position’, newPosition);
   }
 }
 
 // Function to create a new Parallelogram instance for each element
 function createParallelogramAnimations() {
   const elements = document.querySelectorAll('.parallelogram');
-  elements.forEach(element => new Parallelogram(element, getRandomInt(window.innerWidth+20, -element.style.width-20), element.style.width+20.0));
+  elements.forEach(element => new Parallelogram(element, element.dataset.position, element.style.width+20.0));
 }
 
 // Initial creation of parallelograms
@@ -80,7 +86,7 @@ const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
       if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node, getRandomInt(window.innerWidth+20.0, -node.style.width-20.0), node.style.width+20.0);
+        new Parallelogram(node, element.dataset.position, node.style.width+20.0);
       }
     });
   });
