@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Blanka';
-  src: url('../fonts/blanka/Blanka.otf') format('opentype');
+  src: url('./fonts/blanka/Blanka.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
 }
