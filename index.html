@@ -50,7 +50,7 @@
             div.style.width = w + 'px';
 
             // Set position, starting just off the right side of the screen
-            const startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w/2);
+            const startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
             div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             div.style.top = (rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth) + 'px';
 
@@ -72,9 +72,9 @@
             let lastTime = null;
             const moveParallelogram = (currentTime) => {
                 const leftPos = parseXPos(div);
-                if (leftPos > window.innerWidth - (w/2)) {
+                if (leftPos > window.innerWidth) {
                     // Reset when moving off-screen
-                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-w/2}px)`;
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-w}px)`;
                 } else {
                     // Move according to the speed and rotation
                     let deltaTime = (currentTime - lastTime) / 1000;
