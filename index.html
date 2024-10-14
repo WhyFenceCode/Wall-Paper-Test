@@ -1,12 +1,99 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>WallPaper Test</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <h1 class="text" id="date">%DATE_FETCH_ERROR%</h1>
-    <!-- Paralelogram Script -->
-    <script src="script.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .parallelogram {
+      position: fixed;
+      height: 32px;
+      transform: skew(64deg) rotate(32deg);
+      background-color: #3498db;
+    }
+  </style>
+  <title>Parallelogram Animation</title>
+</head>
+<body>
+
+<script>
+  const speed = 24; // pixels per second
+  const rowHeight = 32; // height of each row (same as div height)
+  const minSeparation = 64; // minimum separation between parallelograms
+  const parallelogramCount = 10; // number of parallelograms per row
+
+  // Function to create a new parallelogram div
+  function createParallelogram() {
+    const div = document.createElement('div');
+    div.classList.add('parallelogram');
+    
+    // Set random width for the parallelogram between 192px and 320px
+    const randomWidth = 256 + (Math.random() * 128 - 64);
+    div.style.width = `${randomWidth}px`;
+
+    // Set random starting position within the screen width, ensuring they do not overlap
+    const startingLeft = Math.max(minSeparation, Math.random() * (window.innerWidth - randomWidth - minSeparation));
+    div.style.left = `${startingLeft}px`;
+
+    return div;
+  }
+
+  // Function to animate the parallelogram divs
+  function moveParallelogram(parallelogram) {
+    let leftPos = parseFloat(parallelogram.style.left); // Get the initial left position
+    
+    function animate() {
+      // Update position based on the speed
+      leftPos += (speed / 60); // requestAnimationFrame runs ~60 times per second
+      
+      // If it moves off-screen, reset to just off the right side
+      if (leftPos > window.innerWidth) {
+        leftPos = -parseFloat(parallelogram.style.width); // Reset to just off the left
+      }
+
+      parallelogram.style.left = `${leftPos}px`;
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // Generator function to create and animate parallelograms systematically
+  function generateParallelograms() {
+    for (let row = 0; row * rowHeight < window.innerHeight; row++) {
+      for (let count = 0; count < parallelogramCount; count++) {
+        // Ensure there is at least minSeparation between parallelograms
+        const newParallelogram = createParallelogram();
+        newParallelogram.style.top = `${row * rowHeight}px`;
+        document.body.insertBefore(newParallelogram, document.body.firstChild); // Add as the first child
+        
+        moveParallelogram(newParallelogram); // Animate the parallelogram
+      }
+    }
+  }
+
+  // MutationObserver to observe new parallelograms added to the body and animate them
+  const observer = new MutationObserver(function(mutationsList) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        mutation.addedNodes.forEach(node => {
+          if (node.classList && node.classList.contains('parallelogram')) {
+            moveParallelogram(node); // Animate the newly added parallelogram
+          }
+        });
+      }
+    }
+  });
+
+  observer.observe(document.body, { childList: true });
+
+  // Generate parallelograms when the page loads
+  window.onload = generateParallelograms;
+</script>
+
+</body>
 </html>
