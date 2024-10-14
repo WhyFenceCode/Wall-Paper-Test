@@ -41,8 +41,12 @@
             return y;
         }
 
+        function doRangesOverlap(a1, a2, b1, b2) {
+            return a1 <= b2 && a2 >= b1;
+        }
+
         // Function to generate parallelograms
-        function generateParallelogram(rowIndex, w) {
+        function generateParallelogram(rowIndex, w, l, lw) {
             const div = document.createElement('div');
             div.classList.add(classOptions[Math.floor(Math.random() * classOptions.length)]);
 
@@ -50,8 +54,17 @@
             div.style.width = w + 'px';
 
             // Set position, starting just off the right side of the screen
-            const startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
-            div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
+            let startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
+            if (l == 0){
+                div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
+            } else {
+                let k = 0;
+                while (doRangesOverlap(l, l+lw, startleft, startleft+w) && k < 50) {
+                    startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
+                    k++;
+                }
+                div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
+            }
             div.style.top = (rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth) + 'px';
 
             // Add the div as the first child
@@ -91,12 +104,15 @@
             for (let i = 0; i < rowCount; i++) {
                 let count = Math.min(Math.floor(Math.random() * maxPerRow) + 1, maxPerRow); // Random number of parallelograms per row
                 let lastX = 0;
+                let lastW = 0;
                 for (let j = 0; j < count; j++) {
                     const width = Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramWidthMin;
                     const xPos = lastX + width + Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramSpacing;
-                    lastX = xPos;
+                    const xOffest = width + Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramSpacing;
                     if (xPos > window.innerWidth + 340) break; // Ensure no overlaps outside the screen width
-                    generateParallelogram(i, width); 
+                    generateParallelogram(i, width, lastX, lastW);
+                    lastX = xPos;
+                    lastW = width;
                 }
             }
         }
