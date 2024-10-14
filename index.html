@@ -69,6 +69,7 @@
 
         // Function to animate a parallelogram
         function animateParallelogram(div, startX) {
+            let lastTime = null;
             const moveParallelogram = () => {
                 const leftPos = parseXPos(div);
                 if (leftPos > window.innerWidth - (parseFloat(div.style.width)/2)) {
@@ -76,7 +77,9 @@
                     div.style.transform = `skew(64deg) rotate(32deg) translateX(${ - (parseFloat(div.style.width)/2) }px)`;
                 } else {
                     // Move according to the speed and rotation
-                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${leftPos + speed / 60}px)`;
+                    let deltaTime = (currentTime - lastTime) / 1000;
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${leftPos + (speed * deltaTime)}px)`;
+                    lastTime = currentTime;
                 }
                 requestAnimationFrame(moveParallelogram);
             };
