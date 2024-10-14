@@ -69,7 +69,7 @@
         //Animation Constants
         const parallelogramWidthMin = 192; // 256 - 64
         const parallelogramWidthMax = 320; // 256 + 64
-        const parallelogramSpacing = 64; // Minimum spacing
+        const parallelogramSpacing = 24; // Minimum spacing
         const respawnOffset = 20;
         const rowSeperation = 48;
         const speed = 24; // px per second
@@ -91,7 +91,7 @@
 
             let distAB = Math.abs(ac-bc);
 
-            return distAB >= (aw/2) + (bw/2) + parallelogramSpacing;
+            return distAB >= aw + bw/2 + parallelogramSpacing;
         }
 
         // Function to generate parallelograms
