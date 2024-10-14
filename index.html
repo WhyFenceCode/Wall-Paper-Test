@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Background Test</title>
     <style>
+        @font-face {
+          font-family: 'Blanka';
+          src: url('./fonts/blanka/Blanka.otf') format('opentype');
+          font-weight: normal;
+          font-style: normal;
+        }
+        
         body {
             margin: 0;
             overflow: hidden;
@@ -13,6 +20,8 @@
 
         .parallelogram-blue {
             position: fixed;
+            transform-origin: top left;
+            border-radius: 4px;
             left: 0;
             top: 0;
             height: 32px;
@@ -21,6 +30,8 @@
 
         .parallelogram-pink {
             position: fixed;
+            transform-origin: top left;
+            border-radius: 4px;
             left: 0;
             top: 0;
             height: 32px;
