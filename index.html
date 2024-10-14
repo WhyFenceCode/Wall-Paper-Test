@@ -50,7 +50,7 @@
             div.style.width = width + 'px';
 
             // Set position, starting just off the right side of the screen
-            const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
+            const startLeft = Math.floor((window.innerWidth - width));
             div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             div.style.top = (rowIndex * 32) - heightOffsetTrig(window.innerWidth) + 'px';
 
