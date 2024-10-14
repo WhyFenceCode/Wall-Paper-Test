@@ -42,12 +42,14 @@
         }
 
         function doRangesOverlap(a1, a2, b1, b2) {
-            let rangeAStart = Math.min(a1, a2);
-            let rangeAEnd = Math.max(a1, a2);
-            let rangeBStart = Math.min(b1, b2);
-            let rangeBEnd = Math.max(b1, b2);
-            
-            return !(rangeAEnd <= rangeBStart || rangeBEnd <= rangeAStart);
+            let aw = Math.abs(a1 - a2);
+            let bw = Math.abs(b1 - b2);
+            let ac = Math.min(a1, a2) + (aw/2);
+            let bc = Math.min(b1, b2) + (bw/2);
+
+            let distAB = Math.abs(ac-bc);
+
+            return distAB <= (aw/2) + (bw/2) + parallelogramSpacing;
         }
 
         // Function to generate parallelograms
@@ -64,7 +66,7 @@
                 div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             } else {
                 let k = 0;
-                while (doRangesOverlap(l-parallelogramSpacing, l+lw+parallelogramSpacing, startLeft, startLeft+w) && k < 50) {
+                while (doRangesOverlap(l, l+lw, startLeft, startLeft+w) && k < 50) {
                     startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
                     k++;
                 }
