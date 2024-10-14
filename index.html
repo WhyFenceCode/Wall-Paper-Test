@@ -13,8 +13,8 @@
         }
 
         :root {
-            -clr-pink: hsl(317 100% 54%);
-            -clr-blue: hsl(197 100% 54%);
+            --clr-pink: hsl(317 100% 54%);
+            --clr-blue: hsl(197 100% 54%);
         }
         
         body {
@@ -30,7 +30,8 @@
             left: 0;
             top: 0;
             height: 32px;
-            background-color: lightblue;
+            background-color: var(--clr-blue);
+            box-shadow: 0 0 2em 0.5em var(--clr-blue);
         }
 
         .parallelogram-pink {
@@ -40,7 +41,8 @@
             left: 0;
             top: 0;
             height: 32px;
-            background-color: pink;
+            background-color: var(--clr-pink);
+            box-shadow: 0 0 2em 0.5em var(--clr-pink);
         }
 
         .text {
