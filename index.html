@@ -34,7 +34,11 @@
             const div = document.createElement('div');
             div.classList.add('parallelogram');
 
-@@ -42,28 +45,37 @@
+            // Randomly assign width
+            const width = Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramWidthMin;
+            div.style.width = width + 'px';
+
+            // Randomly assign starting color
             div.style.backgroundColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
 
             // Set position, starting just off the right side of the screen
@@ -63,7 +67,8 @@
                 requestAnimationFrame(moveParallelogram);
             };
             requestAnimationFrame(moveParallelogram);
-@@ -72,35 +84,37 @@
+        }
+
         // Generate parallelograms row by row, and multiple per row
         function generateParallelograms() {
             for (let i = 0; i < rowCount; i++) {
@@ -99,3 +104,5 @@
         // Start generating parallelograms
         generateParallelograms();
     </script>
+</body>
+</html>
