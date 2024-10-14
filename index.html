@@ -14,7 +14,6 @@
         .parallelogram {
             position: fixed;
             height: 32px;
-            transform: skew(64deg) rotate(32deg);
             background-color: lightblue;
         }
     </style>
@@ -27,7 +26,7 @@
         const speed = 24; // px per second
         const colorOptions = ['#3498db', '#2ecc71']; // Two background colors
         const rowCount = Math.floor(window.innerHeight / 32); // Number of rows to fill vertically
-        const maxPerRow = 5; // Max parallelograms per row
+        const maxPerRow = 3; // Max parallelograms per row
 
         // Function to generate parallelograms
         function generateParallelogram(rowIndex) {
@@ -43,7 +42,7 @@
 
             // Set position, starting just off the right side of the screen
             const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
-            div.style.left = startLeft + 'px';
+            div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             div.style.top = rowIndex * 32 + 'px';
 
             // Add the div as the first child
@@ -60,9 +59,10 @@
                 if (leftPos > window.innerWidth) {
                     // Reset when moving off-screen
                     div.style.left = '-64px'; // Starts just off the left side of the screen
+                    div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + (div.style.width/2) + 'px)';
                 } else {
                     // Move according to the speed and rotation
-                    div.style.left = leftPos + speed / 60 + 'px';
+                    div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + (leftPos + speed / 60) + 'px)';
                 }
                 requestAnimationFrame(moveParallelogram);
             };
