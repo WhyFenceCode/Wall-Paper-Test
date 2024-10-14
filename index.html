@@ -70,7 +70,7 @@
         // Function to animate a parallelogram
         function animateParallelogram(div, startX) {
             let lastTime = null;
-            const moveParallelogram = () => {
+            const moveParallelogram = (currentTime) => {
                 const leftPos = parseXPos(div);
                 if (leftPos > window.innerWidth - (parseFloat(div.style.width)/2)) {
                     // Reset when moving off-screen
