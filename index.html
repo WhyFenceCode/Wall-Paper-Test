@@ -52,13 +52,16 @@
             animateParallelogram(div, startLeft);
         }
 
+        function parseXPos(div){
+            return parseFloat(div.style.transform.split(' ')[2]);
+        }
+        
         // Function to animate a parallelogram
         function animateParallelogram(div, startX) {
             const moveParallelogram = (timestamp) => {
-                const leftPos = parseFloat(div.style.left);
+                const leftPos = parseXPos(div);
                 if (leftPos > window.innerWidth) {
                     // Reset when moving off-screen
-                    div.style.left = '-64px'; // Starts just off the left side of the screen
                     div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + (div.style.width/2) + 'px)';
                 } else {
                     // Move according to the speed and rotation
