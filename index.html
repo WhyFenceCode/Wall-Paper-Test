@@ -42,6 +42,8 @@
         }
 
         function doRangesOverlap(a1, a2, b1, b2) {
+            if (a1 > a2) [a1, a2] = [a2, a1];
+            if (b1 > b2) [b1, b2] = [b2, b1];
             return a1 <= b2 && a2 >= b1;
         }
 
