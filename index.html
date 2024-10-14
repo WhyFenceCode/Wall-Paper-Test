@@ -13,8 +13,10 @@
         }
 
         :root {
-            --clr-pink: hsl(317 100% 54%);
-            --clr-blue: hsl(197 100% 54%);
+            --clr-pink: hsl(317 100% 54% / .7);
+            --clr-pink-neon: hsl(317 100% 54%);
+            --clr-blue: hsl(197 100% 54% / .7);
+            --clr-blue-neon: hsl(197 100% 54%);
         }
         
         body {
@@ -30,9 +32,8 @@
             left: 0;
             top: 0;
             height: 32px;
-            opacity: 0.7;
             background-color: var(--clr-blue);
-            box-shadow: 0 0 2em 0.5em var(--clr-blue);
+            box-shadow: 0 0 2em 0.5em var(--clr-blue-neon);
         }
 
         .parallelogram-pink {
@@ -42,9 +43,8 @@
             left: 0;
             top: 0;
             height: 32px;
-            opacity: 0.7;
             background-color: var(--clr-pink);
-            box-shadow: 0 0 2em 0.5em var(--clr-pink);
+            box-shadow: 0 0 2em 0.5em var(--clr-pink-neon);
         }
 
         .text {
