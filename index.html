@@ -72,7 +72,7 @@
             let lastTime = null;
             const moveParallelogram = (currentTime) => {
                 const leftPos = parseXPos(div);
-                if (leftPos > window.innerWidth - w/2)) {
+                if (leftPos > window.innerWidth - (w/2)) {
                     // Reset when moving off-screen
                     div.style.transform = `skew(64deg) rotate(32deg) translateX(${-w/2}px)`;
                 } else {
