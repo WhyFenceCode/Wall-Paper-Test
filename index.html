@@ -32,7 +32,7 @@
         const speed = 24; // px per second
         const classOptions = ['parallelogram-blue', 'parallelogram-pink']; // Two background colors
         const rowCount = Math.ceil((window.innerHeight +  heightOffsetTrig(window.innerWidth))/ 32);
-        const maxPerRow = 3; // Max parallelograms per row
+        const maxPerRow = 1; // Max parallelograms per row
 
         function heightOffsetTrig(x) {
             let angle = 32 * (Math.PI/180);
@@ -50,7 +50,7 @@
             div.style.width = width + 'px';
 
             // Set position, starting just off the right side of the screen
-            const startLeft = Math.floor((window.innerWidth - width));
+            const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
             div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             div.style.top = (rowIndex * 32) - heightOffsetTrig(window.innerWidth) + 'px';
 
