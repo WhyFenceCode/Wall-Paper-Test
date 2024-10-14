@@ -16,7 +16,6 @@
             height: 32px;
             transform: skew(64deg) rotate(32deg);
             background-color: lightblue;
-            will-change: transform;
         }
     </style>
 </head>
@@ -24,76 +23,58 @@
     <script>
         const parallelogramWidthMin = 192; // 256 - 64
         const parallelogramWidthMax = 320; // 256 + 64
-        const parallelogramSpacing = 64; // Minimum spacing between parallelograms horizontally
-        const speed = 24; // px per second horizontal speed
-        const angleInRadians = 32 * Math.PI / 180; // Convert degrees to radians for trigonometric calculations
-        const verticalSpeed = speed * Math.tan(angleInRadians); // The vertical speed based on the 32deg movement
+        const parallelogramSpacing = 64; // Minimum spacing
+        const speed = 24; // px per second
         const colorOptions = ['#3498db', '#2ecc71']; // Two background colors
         const rowCount = Math.floor(window.innerHeight / 32); // Number of rows to fill vertically
         const maxPerRow = 5; // Max parallelograms per row
 
         // Function to generate parallelograms
-        function generateParallelogram(rowIndex, xPos) {
+        function generateParallelogram(rowIndex) {
             const div = document.createElement('div');
             div.classList.add('parallelogram');
 
-            // Randomly assign width
-            const width = Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramWidthMin;
-            div.style.width = width + 'px';
-
-            // Randomly assign starting color
+@@ -42,28 +45,37 @@
             div.style.backgroundColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
 
             // Set position, starting just off the right side of the screen
-            div.style.left = `${xPos}px`;
-            div.style.top = `${rowIndex * 32}px`;
+            const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
+            div.style.left = startLeft + 'px';
+            div.style.top = rowIndex * 32 + 'px';
 
             // Add the div as the first child
             document.body.insertBefore(div, document.body.firstChild);
 
             // Initialize animation
-            animateParallelogram(div, xPos);
+            animateParallelogram(div, startLeft);
         }
 
         // Function to animate a parallelogram
         function animateParallelogram(div, startX) {
-            let lastTimestamp = 0;
             const moveParallelogram = (timestamp) => {
-                if (!lastTimestamp) lastTimestamp = timestamp;
-                const elapsed = timestamp - lastTimestamp;
-
                 const leftPos = parseFloat(div.style.left);
-                const topPos = parseFloat(div.style.top);
-
                 if (leftPos > window.innerWidth) {
                     // Reset when moving off-screen
-                    div.style.left = '-64px'; // Start just off the left side of the screen
-                    div.style.top = `${(topPos - verticalSpeed * elapsed / 1000) % window.innerHeight}px`; // Continue vertical movement
+                    div.style.left = '-64px'; // Starts just off the left side of the screen
                 } else {
-                    // Move according to the speed and angle of movement (32 degrees)
-                    div.style.left = leftPos + (speed * elapsed / 1000) + 'px';
-                    div.style.top = topPos + (verticalSpeed * elapsed / 1000) + 'px';
+                    // Move according to the speed and rotation
+                    div.style.left = leftPos + speed / 60 + 'px';
                 }
-
-                lastTimestamp = timestamp;
                 requestAnimationFrame(moveParallelogram);
             };
             requestAnimationFrame(moveParallelogram);
-        }
-
+@@ -72,35 +84,37 @@
         // Generate parallelograms row by row, and multiple per row
         function generateParallelograms() {
             for (let i = 0; i < rowCount; i++) {
-                let lastX = 0;
                 let count = Math.min(Math.floor(Math.random() * maxPerRow) + 1, maxPerRow); // Random number of parallelograms per row
-
+                let lastX = 0;
                 for (let j = 0; j < count; j++) {
                     const width = Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramWidthMin;
-                    const xPos = lastX + Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramSpacing;
-                    if (xPos > window.innerWidth - width) break; // Ensure no overlaps outside the screen width
-
-                    lastX = xPos + width + parallelogramSpacing;
-                    generateParallelogram(i, xPos);
+                    const xPos = lastX + width + Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramSpacing;
+                    lastX = xPos;
+                    if (xPos > window.innerWidth) break; // Ensure no overlaps outside the screen width
+                    generateParallelogram(i); 
                 }
             }
         }
@@ -118,5 +99,3 @@
         // Start generating parallelograms
         generateParallelograms();
     </script>
-</body>
-</html>
