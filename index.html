@@ -29,9 +29,10 @@
         const parallelogramWidthMin = 192; // 256 - 64
         const parallelogramWidthMax = 320; // 256 + 64
         const parallelogramSpacing = 64; // Minimum spacing
+        const rowSeperation = 48;
         const speed = 24; // px per second
         const classOptions = ['parallelogram-blue', 'parallelogram-pink']; // Two background colors
-        const rowCount = Math.ceil((window.innerHeight +  heightOffsetTrig(window.innerWidth))/ 32);
+        const rowCount = Math.ceil((window.innerHeight +  heightOffsetTrig(window.innerWidth))/ rowSeperation);
         const maxPerRow = 1; // Max parallelograms per row
 
         function heightOffsetTrig(x) {
@@ -52,7 +53,7 @@
             // Set position, starting just off the right side of the screen
             const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
             div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
-            div.style.top = (rowIndex * 32) - heightOffsetTrig(window.innerWidth) + 'px';
+            div.style.top = (rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth) + 'px';
 
             // Add the div as the first child
             document.body.insertBefore(div, document.body.firstChild);
