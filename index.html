@@ -52,20 +52,22 @@
             animateParallelogram(div, startLeft);
         }
 
-        function parseXPos(div){
-            return parseFloat(div.style.transform.split(' ')[2]);
+        function parseXPos(div) {
+            const transform = div.style.transform;
+            const translateXMatch = transform.match(/translateX\((-?\d+\.?\d*)px\)/);
+            return translateXMatch ? parseFloat(translateXMatch[1]) : 0;
         }
         
         // Function to animate a parallelogram
         function animateParallelogram(div, startX) {
-            const moveParallelogram = (timestamp) => {
+            const moveParallelogram = () => {
                 const leftPos = parseXPos(div);
                 if (leftPos > window.innerWidth) {
                     // Reset when moving off-screen
-                    div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + (div.style.width/2) + 'px)';
+                    div.style.transform = 'skew(64deg) rotate(32deg) translateX(0px)';
                 } else {
                     // Move according to the speed and rotation
-                    div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + (leftPos + speed / 60) + 'px)';
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${leftPos + speed / 60}px)`;
                 }
                 requestAnimationFrame(moveParallelogram);
             };
