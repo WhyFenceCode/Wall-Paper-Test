@@ -50,7 +50,7 @@
             div.style.width = w + 'px';
 
             // Set position, starting just off the right side of the screen
-            const startLeft = Math.floor(Math.random() * (window.innerWidth - w));
+            const startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w/2);
             div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             div.style.top = (rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth) + 'px';
 
@@ -58,7 +58,7 @@
             document.body.insertBefore(div, document.body.firstChild);
 
             // Initialize animation
-            animateParallelogram(div, startLeft);
+            animateParallelogram(div, startLeft, w);
         }
 
         function parseXPos(div) {
@@ -68,13 +68,13 @@
         }
 
         // Function to animate a parallelogram
-        function animateParallelogram(div, startX) {
+        function animateParallelogram(div, startX, w) {
             let lastTime = null;
             const moveParallelogram = (currentTime) => {
                 const leftPos = parseXPos(div);
-                if (leftPos > window.innerWidth - (parseFloat(div.style.width)/2)) {
+                if (leftPos > window.innerWidth - w/2)) {
                     // Reset when moving off-screen
-                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${ - (parseFloat(div.style.width)/2) }px)`;
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-w/2}px)`;
                 } else {
                     // Move according to the speed and rotation
                     let deltaTime = (currentTime - lastTime) / 1000;
