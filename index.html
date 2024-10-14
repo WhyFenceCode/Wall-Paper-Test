@@ -64,7 +64,7 @@
                 const leftPos = parseXPos(div);
                 if (leftPos > window.innerWidth) {
                     // Reset when moving off-screen
-                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-64}px)`;
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${- parseFloat(div.style.width)}px)`;
                 } else {
                     // Move according to the speed and rotation
                     div.style.transform = `skew(64deg) rotate(32deg) translateX(${leftPos + speed / 60}px)`;
