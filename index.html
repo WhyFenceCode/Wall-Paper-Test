@@ -62,9 +62,9 @@
         function animateParallelogram(div, startX) {
             const moveParallelogram = () => {
                 const leftPos = parseXPos(div);
-                if (leftPos > window.innerWidth) {
+                if (leftPos > (window.innerWidth - (parseFloat(div.style.width)/2) ) {
                     // Reset when moving off-screen
-                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${- parseFloat(div.style.width)}px)`;
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-(parseFloat(div.style.width)/2)}px)`;
                 } else {
                     // Move according to the speed and rotation
                     div.style.transform = `skew(64deg) rotate(32deg) translateX(${leftPos + speed / 60}px)`;
