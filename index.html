@@ -26,10 +26,29 @@
             height: 32px;
             background-color: pink;
         }
+
+        .text {
+          font-family: "Blanka";
+          font-size: 5em;
+          letter-spacing: 0.2em;
+          color: rgba(192, 192, 192, 1);
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform-origin: center;
+          transform: translate(-50%, -110%);
+          text-shadow: 2px 3px 7px rgba(0, 0, 0, 0.45);
+        }
     </style>
 </head>
 <body>
+    <h1 class="text" id="date">%DATE_FETCH_ERROR%</h1>
     <script>
+        //Date Constants
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const textObject =   document.getElementById('date');
+
+        //Animation Constants
         const parallelogramWidthMin = 192; // 256 - 64
         const parallelogramWidthMax = 320; // 256 + 64
         const parallelogramSpacing = 24; // Minimum spacing
@@ -148,5 +167,16 @@
 
         // Start generating parallelograms
         generateParallelograms();
+
+        //Do the Date
+        function setDateText(){
+          let d = new Date();
+          let data = months[d.getMonth()];
+          data = data + " " + d.getDate();
+          textObject.innerHTML = data;
+        }
+        
+        setDateText();
+        setInterval(setDateText, 500);
     </script>
 </body>
