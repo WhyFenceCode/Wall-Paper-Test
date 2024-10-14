@@ -42,17 +42,16 @@
         }
 
         // Function to generate parallelograms
-        function generateParallelogram(rowIndex) {
+        function generateParallelogram(rowIndex, w, x) {
             const div = document.createElement('div');
             div.classList.add(classOptions[Math.floor(Math.random() * classOptions.length)]);
 
             // Randomly assign width
-            const width = Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramWidthMin;
-            div.style.width = width + 'px';
+            div.style.width = w + 'px';
 
             // Set position, starting just off the right side of the screen
             const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
-            div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
+            div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + x + 'px)';
             div.style.top = (rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth) + 'px';
 
             // Add the div as the first child
@@ -97,7 +96,7 @@
                     const xPos = lastX + width + Math.floor(Math.random() * (parallelogramWidthMax - parallelogramWidthMin + 1)) + parallelogramSpacing;
                     lastX = xPos;
                     if (xPos > window.innerWidth + 340) break; // Ensure no overlaps outside the screen width
-                    generateParallelogram(i); 
+                    generateParallelogram(i, width, xPos); 
                 }
             }
         }
