@@ -110,6 +110,7 @@
                 let k = 0;
                 //while (doRangesOverlap(l, l+lw, startLeft, startLeft+w) && k < 50) {
                 while (!doRangesOverlap(l, l+lw, startLeft, startLeft+w)) {
+                    console.log(lw);
                     startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
                     k++;
                 }
