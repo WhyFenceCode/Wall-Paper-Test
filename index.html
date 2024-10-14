@@ -59,7 +59,7 @@
                 div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             } else {
                 let k = 0;
-                while (doRangesOverlap(l, l+lw, startleft, startleft+w) && k < 50) {
+                while (doRangesOverlap(l, l+lw, startLeft, startLeft+w) && k < 50) {
                     startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
                     k++;
                 }
