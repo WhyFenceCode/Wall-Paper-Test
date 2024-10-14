@@ -93,9 +93,9 @@
             let lastTime = null;
             const moveParallelogram = (currentTime) => {
                 const leftPos = parseXPos(div);
-                if (leftPos > window.innerWidth) {
+                if (leftPos > (window.innerWidth-w)) {
                     // Reset when moving off-screen
-                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-320}px)`;
+                    div.style.transform = `skew(64deg) rotate(32deg) translateX(${-w}px)`;
                 } else {
                     // Move according to the speed and rotation
                     let deltaTime = (currentTime - lastTime) / 1000;
