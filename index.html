@@ -77,7 +77,7 @@
                 console.log(k);
                 div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             }
-            div.style.top = math.ceil((rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth)) + 'px';
+            div.style.top = Math.ceil((rowIndex * rowSeperation) - heightOffsetTrig(window.innerWidth)) + 'px';
 
             // Add the div as the first child
             document.body.insertBefore(div, document.body.firstChild);
