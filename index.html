@@ -22,10 +22,10 @@
     <script>
         const parallelogramWidthMin = 192; // 256 - 64
         const parallelogramWidthMax = 320; // 256 + 64
-        const parallelogramSpacing = 64; // Minimum spacing
+        const parallelogramSpacing = 48; // Minimum spacing
         const speed = 24; // px per second
         const colorOptions = ['#3498db', '#2ecc71']; // Two background colors
-        const rowCount = Math.floor(window.innerHeight / 32); // Number of rows to fill vertically
+        const rowCount = Math.floor(window.innerHeight / 48); // Adjusted row height to 48px for proper spacing
         const maxPerRow = 3; // Max parallelograms per row
 
         // Function to generate parallelograms
@@ -43,7 +43,7 @@
             // Set position, starting just off the right side of the screen
             const startLeft = Math.floor(Math.random() * (window.innerWidth - width));
             div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
-            div.style.top = rowIndex * 32 + 'px';
+            div.style.top = rowIndex * 48 + 'px'; // Adjusted top position to prevent overlap
 
             // Add the div as the first child
             document.body.insertBefore(div, document.body.firstChild);
