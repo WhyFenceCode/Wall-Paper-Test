@@ -84,7 +84,7 @@
 
             let distAB = Math.abs(ac-bc);
 
-            return distAB <= (aw/2) + (bw/2) + parallelogramSpacing;
+            return distAB >= (aw/2) + (bw/2) + parallelogramSpacing;
         }
 
         // Function to generate parallelograms
@@ -101,7 +101,8 @@
                 div.style.transform = 'skew(64deg) rotate(32deg) translateX(' + startLeft + 'px)';
             } else {
                 let k = 0;
-                while (doRangesOverlap(l, l+lw, startLeft, startLeft+w) && k < 50) {
+                //while (doRangesOverlap(l, l+lw, startLeft, startLeft+w) && k < 50) {
+                while (!doRangesOverlap(l, l+lw, startLeft, startLeft+w)) {
                     startLeft = Math.floor((Math.random() * (window.innerWidth + w)) - w);
                     k++;
                 }
