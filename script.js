@@ -26,11 +26,16 @@ function movePositions(time, lastTime, xPos, yPos) {
 }
 
 class Parallelogram {
-  constructor(width, height, row) {
+  constructor(width, height, row, yPos) {
     this.width = width;
     this.height = height;
     this.row = row;
+    this.yPos = yPos;
+    this.xPos = -width;
     this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
+  }
+  updatePosition(timestamp) {
+    
   }
 }
 /* Each frame
