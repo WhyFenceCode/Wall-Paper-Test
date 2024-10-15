@@ -4,7 +4,7 @@ const parallelogramColors = ['hsl(317 100% 54% / .7)', 'hsl(197 100% 54% / .7)']
 const parallelogramHeight = 32;
 const rowHeight = 48;
 const minimumSeperation = 32;
-const speedX = 24;
+const speedX = 6;
 const speedY = 3.7492;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
@@ -64,6 +64,10 @@ class Parallelogram {
   }
 
   updatePosition(timestamp) {
+    if (!this.lastTimestamp) {
+      this.lastTimestamp = timestamp;
+    }
+    
     if (timestamp) {
       let posArray = movePositions(timestamp, this.lastTimestamp, this.xPos, this.yPos);
       this.xPos = posArray[0];
@@ -90,6 +94,8 @@ class Parallelogram {
         this.element.style.left = this.xPos + 'px';
         this.element.style.top = this.yPos + 'px';
       }
+
+      this.lastTimestamp = timestamp;
     }
 
     if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
