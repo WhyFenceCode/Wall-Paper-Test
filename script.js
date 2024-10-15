@@ -65,15 +65,15 @@ class Parallelogram {
   
   updatePosition(timestamp) {
     if (timestamp) {
-      if (!lastTimestamp){
-        lastTimestamp = timestamp;
+      if (!this.lastTimestamp){
+        this.lastTimestamp = timestamp;
       }
-      let posArray = movePositions(timestamp, lastTimestamp, xPos, yPos);
+      let posArray = movePositions(timestamp, this.lastTimestamp, this.xPos, this.yPos);
       this.xPos = posArray[0];
       this.yPos = posArray[1];
       
       let arrayIndex = rowClears[row].findIndex(this);
-      if (xPos >= minimumSeperation) {
+      if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
           rowClears[row] = removeByIndex(arrayIndex, rowClears[row]);
         }
