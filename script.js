@@ -15,10 +15,17 @@ function heightOffset(x) {
     return y;
 }
 
+function movePositions(time, lastTime, xPos, yPos) {
+  let deltaTime = (time - lastTime)/1000;
+  let newXPos = xPos + (speedX * delta);
+  let newYPos = yPos + (speedY * delta);
+
+  return [newXPos, newYPos];
+}
+
 class Parallelogram {
   constructor(width, height) {
     this.width = width;
     this.height = height;
   }
 }
-
