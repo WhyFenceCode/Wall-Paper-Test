@@ -1,5 +1,6 @@
 const parallelogramWidthMax = 320;
 const parallelogramWidthMin = 192;
+const parallelogramColors = ["color1", "color2"];
 const rowHeight = 48;
 const speedX = 24;
 const speedY = 14.997;
@@ -24,8 +25,11 @@ function movePositions(time, lastTime, xPos, yPos) {
 }
 
 class Parallelogram {
-  constructor(width, height, color) {
+  constructor(width, height, row, index) {
     this.width = width;
     this.height = height;
+    this.row = row;
+    this.index = index;
+    this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
   }
 }
