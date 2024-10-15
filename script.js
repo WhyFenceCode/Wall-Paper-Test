@@ -28,8 +28,8 @@ function removeByIndex(i, arrayToSlice) {
 
 function movePositions(time, lastTime, xPos, yPos) {
   let deltaTime = (time - lastTime)/1000;
-  let newXPos = xPos + (speedX * delta);
-  let newYPos = yPos + (speedY * delta);
+  let newXPos = xPos + (speedX * deltaTime);
+  let newYPos = yPos + (speedY * deltaTime);
 
   return [newXPos, newYPos];
 }
