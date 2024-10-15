@@ -100,7 +100,7 @@ class Parallelogram {
 }
 
 function spawnParallelogram() {
-  console.log("Need to Spawn);
+  console.log("Need to Spawn");
 }
 
 for (let i = 0; i < rowCount; i++) {
