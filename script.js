@@ -2,6 +2,7 @@ const parallelogramWidthMax = 320;
 const parallelogramWidthMin = 192;
 const parallelogramColors = ["color1", "color2"];
 const rowHeight = 48;
+const minimumSeperation = 32;
 const speedX = 24;
 const speedY = 14.997;
 const rowCount = Math.ceil(window.innerHeight +  heightOffset(window.innerWidth))/ rowHeight);
@@ -26,20 +27,29 @@ function movePositions(time, lastTime, xPos, yPos) {
 }
 
 class Parallelogram {
-  constructor(width, height, row, yPos) {
+  constructor(width, height, row) {
     this.width = width;
     this.height = height;
     this.row = row;
-    this.yPos = yPos;
+    this.yPos = this.row * rowHeight;
     this.xPos = -width;
     this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
+    this.lastTimestamp = null;
   }
   updatePosition(timestamp) {
-    
+    if (timestamp) {
+      let posArray = movePositions(timestamp, lastTimestamp, xPos, yPos);
+      this.xPos = posArray[0];
+      this.yPos = posArray[1];
+      if (xPos >= minimumSeperation) {
+
+      }
+    }
   }
 }
 /* Each frame
 Use moveposition
 Check rowClear for new spawns
 Check offscreen, if call new spawn and remove self
+Render if not offscreen
 */
