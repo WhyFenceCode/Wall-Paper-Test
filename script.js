@@ -72,14 +72,14 @@ class Parallelogram {
       this.xPos = posArray[0];
       this.yPos = posArray[1];
       
-      let arrayIndex = rowClears[row].findIndex(this);
+      let arrayIndex = rowClears[this.row].findIndex(this);
       if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
-          rowClears[row] = removeByIndex(arrayIndex, rowClears[row]);
+          rowClears[this.row] = removeByIndex(arrayIndex, rowClears[row]);
         }
       } else {
         if (arrayIndex < 0) {
-          rowClears[row].push(this);
+          rowClears[this.row].push(this);
         }
       }
 
