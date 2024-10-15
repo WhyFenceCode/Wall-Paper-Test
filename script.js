@@ -65,9 +65,6 @@ class Parallelogram {
 
   updatePosition(timestamp) {
     if (timestamp) {
-      if (!this.lastTimestamp) {
-        this.lastTimestamp = timestamp;
-      }
       let posArray = movePositions(timestamp, this.lastTimestamp, this.xPos, this.yPos);
       this.xPos = posArray[0];
       this.yPos = posArray[1];
