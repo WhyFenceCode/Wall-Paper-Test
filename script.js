@@ -109,6 +109,8 @@ function initiateRowClears() {
   }
 }
 
+
+initiateRowClears();
 for (let i = 0; i < rowCount; i++) {
   new Parallelogram(i);
 }
