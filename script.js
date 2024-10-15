@@ -5,7 +5,7 @@ const rowHeight = 48;
 const speedX = 24;
 const speedY = 14.997;
 const rowCount = Math.ceil(window.innerHeight +  heightOffset(window.innerWidth))/ rowHeight);
-let elements = [];
+let rowClears = [];
 
 function randomNumber(min, max) {
   return Math.random() * (max-min) + min);
@@ -26,11 +26,10 @@ function movePositions(time, lastTime, xPos, yPos) {
 }
 
 class Parallelogram {
-  constructor(width, height, row, index) {
+  constructor(width, height, row) {
     this.width = width;
     this.height = height;
     this.row = row;
-    this.index = index;
     this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
   }
 }
