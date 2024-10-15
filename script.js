@@ -45,7 +45,7 @@ function createParalelogram(color, width, height, left, top) {
     div.style.left = `${left}px`;
     div.style.top = `${top}px`;
 
-    return document.body.insertBefore(div, body.firstChild);
+    return document.body.insertBefore(div, document.body.firstChild);
   }
 
 class Parallelogram {
