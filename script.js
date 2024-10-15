@@ -22,7 +22,7 @@ function heightOffset(x) {
 
 function removeByIndex(i, arrayToSlice) {
   let halfBefore = arrayToSlice.slice(0, i);
-  let halfAfter = arrayToSlice(i+1);
+  let halfAfter = arrayToSlice.slice(i+1);
   return halfBefore.concat(halfAfter);
 }
 
@@ -72,7 +72,7 @@ class Parallelogram {
       this.xPos = posArray[0];
       this.yPos = posArray[1];
       
-      let arrayIndex = rowClears[this.row].findIndex(this);
+      let arrayIndex = rowClears[this.row].indexOf(this);
       if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
           rowClears[this.row] = removeByIndex(arrayIndex, rowClears[row]);
@@ -84,14 +84,14 @@ class Parallelogram {
       }
 
       if (this.xPos > window.innerWidth) {
-        spawnParrallelogram();
+        spawnParallelogram();
         this.element.remove();
         this.move = false;
       }
 
       if (this.move && this.element) {
-        this.element.style.left = xPos;
-        this.element.style.top = yPos;
+        this.element.style.left = this.xPos;
+        this.element.style.top = this.yPos;
       }
     }
 
@@ -104,7 +104,7 @@ function spawnParallelogram() {
 }
 
 function initiateRowClears() {
-  for (let i = 0; i < rowClears.length; i++) {
+  for (let i = 0; i < rowCount; i++) {
     rowClears.push([]);
   }
 }
