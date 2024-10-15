@@ -11,7 +11,7 @@ const rowCount = Math.ceil((window.innerHeight +  upOffset)/ rowHeight);
 let rowClears = [];
 
 function randomNumber(min, max) {
-  return Math.random() * (max-min) + min);
+  return Math.random() * (max-min) + min;
 }
 
 function heightOffset(x) {
