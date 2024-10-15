@@ -75,7 +75,7 @@ class Parallelogram {
       let arrayIndex = rowClears[this.row].indexOf(this);
       if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
-          rowClears[this.row] = removeByIndex(arrayIndex, rowClears[row]);
+          rowClears[this.row] = removeByIndex(arrayIndex, rowClears[this.row]);
         }
       } else {
         if (arrayIndex < 0) {
