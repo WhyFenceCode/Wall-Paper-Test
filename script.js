@@ -33,3 +33,8 @@ class Parallelogram {
     this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
   }
 }
+/* Each frame
+Use moveposition
+Check rowClear for new spawns
+Check offscreen, if call new spawn and remove self
+*/
