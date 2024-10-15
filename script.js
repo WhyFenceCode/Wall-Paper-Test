@@ -24,7 +24,7 @@ function movePositions(time, lastTime, xPos, yPos) {
 }
 
 class Parallelogram {
-  constructor(width, height) {
+  constructor(width, height, color) {
     this.width = width;
     this.height = height;
   }
