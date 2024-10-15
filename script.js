@@ -6,6 +6,7 @@ const rowHeight = 48;
 const minimumSeperation = 32;
 const speedX = 24;
 const speedY = 14.997;
+const speedMultiplier = 3;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
 let rowClears = [];
@@ -28,8 +29,8 @@ function removeByIndex(i, arrayToSlice) {
 
 function movePositions(time, lastTime, xPos, yPos) {
   let deltaTime = (time - lastTime) / 1000;
-  let newXPos = xPos + speedX * deltaTime;
-  let newYPos = yPos + speedY * deltaTime;
+  let newXPos = xPos + speedX * deltaTime * speedMultiplier;
+  let newYPos = yPos + speedY * deltaTime * speedMultiplier;
 
   return [newXPos, newYPos];
 }
