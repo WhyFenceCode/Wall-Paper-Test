@@ -1,6 +1,6 @@
 const parallelogramWidthMax = 320;
 const parallelogramWidthMin = 192;
-const parallelogramColors = ["color1", "color2"];
+const parallelogramColors = ["hsl(317 100% 54% / .7)", "hsl(197 100% 54% / .7)"];
 const parallelogramHeight = 32;
 const rowHeight = 48;
 const minimumSeperation = 32;
@@ -34,6 +34,20 @@ function movePositions(time, lastTime, xPos, yPos) {
   return [newXPos, newYPos];
 }
 
+function createParalelogram(color, width, height, left, top) {
+    let div = document.createElement('div');
+  
+    div.classList.add('paralelogram');
+    
+    div.style.backgroundColor = color;
+    div.style.width = `${width}px`;
+    div.style.height = `${height}px`;
+    div.style.left = `${left}px`;
+    div.style.top = `${top}px`;
+
+    return document.body.insertBefore(div, body.firstChild);
+  }
+
 class Parallelogram {
   constructor(row) {
     this.width = randomNumber(parallelogramWidthMin, parallelogramWidthMax);
@@ -43,8 +57,10 @@ class Parallelogram {
     this.xPos = -width;
     this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
     this.lastTimestamp = null;
-    this.element = null;
+    this.element = createParalelogram(this.color, this.width, this.height, this.xPos, this.yPos);
     this.move = true;
+
+    if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
   }
   
   updatePosition(timestamp) {
@@ -79,16 +95,14 @@ class Parallelogram {
       }
     }
 
-    requestAnimationFrame(this.updatePosition.bind(this));
+    if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
   }
 }
-/* Each frame
-Use moveposition
-Check rowClear for new spawns
-Check offscreen, if call new spawn and remove self
-Render if not offscreen
-*/
 
 function spawnParallelogram() {
-  
+  console.log("Need to Spawn);
+}
+
+for (let i = 0; i < rowCount; i++) {
+  new Parallelogram(i);
 }
