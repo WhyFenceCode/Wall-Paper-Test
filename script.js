@@ -8,7 +8,7 @@ const speedX = 24;
 const speedY = 14.997;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight +  upOffset)/ rowHeight);
-let rowClears = [[]];
+let rowClears = [];
 
 function randomNumber(min, max) {
   return Math.random() * (max-min) + min;
@@ -105,7 +105,7 @@ function spawnParallelogram() {
 
 function initiateRowClears() {
   for (let i = 0; i < rowClears.length; i++) {
-    rowClears[i] = [];
+    rowClears.push([]);
   }
 }
 
