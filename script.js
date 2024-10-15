@@ -54,7 +54,7 @@ class Parallelogram {
     this.height = parallelogramHeight;
     this.row = row;
     this.yPos = (this.row * rowHeight) - upOffset;
-    this.xPos = -width;
+    this.xPos = -this.width;
     this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
     this.lastTimestamp = null;
     this.element = createParalelogram(this.color, this.width, this.height, this.xPos, this.yPos);
