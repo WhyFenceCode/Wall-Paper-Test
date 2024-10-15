@@ -5,6 +5,7 @@ const rowHeight = 48;
 const speedX = 24;
 const speedY = 14.997;
 const rowCount = Math.ceil(window.innerHeight +  heightOffset(window.innerWidth))/ rowHeight);
+let elements = [];
 
 function randomNumber(min, max) {
   return Math.random() * (max-min) + min);
