@@ -1,77 +1,77 @@
 const parallelogramWidthMax = 320;
 const parallelogramWidthMin = 192;
-const parallelogramColors = ["hsl(317 100% 54% / .7)", "hsl(197 100% 54% / .7)"];
+const parallelogramColors = ['hsl(317 100% 54% / .7)', 'hsl(197 100% 54% / .7)'];
 const parallelogramHeight = 32;
 const rowHeight = 48;
 const minimumSeperation = 32;
 const speedX = 24;
 const speedY = 14.997;
 const upOffset = heightOffset(window.innerWidth);
-const rowCount = Math.ceil((window.innerHeight +  upOffset)/ rowHeight);
+const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
 let rowClears = [];
 
 function randomNumber(min, max) {
-  return Math.random() * (max-min) + min;
+  return Math.random() * (max - min) + min;
 }
 
 function heightOffset(x) {
-    let angle = 32 * (Math.PI/180);
-    let y = x * Math.tan(angle);
-    return y;
+  let angle = 32 * (Math.PI / 180);
+  let y = x * Math.tan(angle);
+  return y;
 }
 
 function removeByIndex(i, arrayToSlice) {
   let halfBefore = arrayToSlice.slice(0, i);
-  let halfAfter = arrayToSlice.slice(i+1);
+  let halfAfter = arrayToSlice.slice(i + 1);
   return halfBefore.concat(halfAfter);
 }
 
 function movePositions(time, lastTime, xPos, yPos) {
-  let deltaTime = (time - lastTime)/1000;
-  let newXPos = xPos + (speedX * deltaTime);
-  let newYPos = yPos + (speedY * deltaTime);
+  let deltaTime = (time - lastTime) / 1000;
+  let newXPos = xPos + speedX * deltaTime;
+  let newYPos = yPos + speedY * deltaTime;
 
   return [newXPos, newYPos];
 }
 
 function createParalelogram(color, width, height, left, top) {
-    let div = document.createElement('div');
-  
-    div.classList.add('paralelogram');
-    
-    div.style.backgroundColor = color;
-    div.style.width = `${width}px`;
-    div.style.height = `${height}px`;
-    div.style.left = `${left}px`;
-    div.style.top = `${top}px`;
+  let div = document.createElement('div');
 
-    return document.body.insertBefore(div, document.body.firstChild);
-  }
+  div.classList.add('paralelogram');
+
+  div.style.backgroundColor = color;
+  div.style.width = `${width}px`;
+  div.style.height = `${height}px`;
+  div.style.left = `${left}px`;
+  div.style.top = `${top}px`;
+
+  return document.body.insertBefore(div, document.body.firstChild);
+}
 
 class Parallelogram {
   constructor(row) {
     this.width = randomNumber(parallelogramWidthMin, parallelogramWidthMax);
     this.height = parallelogramHeight;
     this.row = row;
-    this.yPos = (this.row * rowHeight) - upOffset;
+    this.yPos = this.row * rowHeight - upOffset;
     this.xPos = -this.width;
-    this.color = parallelogramColors[(Math.floor(Math.random() * parallelogramColors.length))];
+    this.color = parallelogramColors[Math.floor(Math.random() * parallelogramColors.length)];
     this.lastTimestamp = null;
     this.element = createParalelogram(this.color, this.width, this.height, this.xPos, this.yPos);
     this.move = true;
 
     if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
   }
-  
+
   updatePosition(timestamp) {
     if (timestamp) {
-      if (!this.lastTimestamp){
+      if (!this.lastTimestamp) {
         this.lastTimestamp = timestamp;
       }
       let posArray = movePositions(timestamp, this.lastTimestamp, this.xPos, this.yPos);
       this.xPos = posArray[0];
       this.yPos = posArray[1];
-      
+
       let arrayIndex = rowClears[this.row].indexOf(this);
       if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
@@ -90,8 +90,8 @@ class Parallelogram {
       }
 
       if (this.move && this.element) {
-        this.element.style.left = this.xPos;
-        this.element.style.top = this.yPos;
+        this.element.style.left = this.xPos + 'px';
+        this.element.style.top = this.yPos + 'px';
       }
     }
 
@@ -100,7 +100,7 @@ class Parallelogram {
 }
 
 function spawnParallelogram() {
-  console.log("Need to Spawn");
+  console.log('Need to Spawn');
 }
 
 function initiateRowClears() {
@@ -108,9 +108,8 @@ function initiateRowClears() {
     rowClears.push([]);
   }
 }
-
-
 initiateRowClears();
+
 for (let i = 0; i < rowCount; i++) {
   new Parallelogram(i);
 }
