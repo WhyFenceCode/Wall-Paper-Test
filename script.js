@@ -23,9 +23,13 @@ function heightOffset(x) {
 }
 
 function removeByIndex(i, arrayToSlice) {
-  let halfBefore = arrayToSlice.slice(0, i);
-  let halfAfter = arrayToSlice.slice(i + 1);
-  return halfBefore.concat(halfAfter);
+  if (arrayToSlice.length > 1){
+    let halfBefore = arrayToSlice.slice(0, i);
+    let halfAfter = arrayToSlice.slice(i + 1);
+    return halfBefore.concat(halfAfter);
+  } else {
+    return [];
+  }
 }
 
 function movePositions(time, lastTime, xPos, yPos) {
