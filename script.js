@@ -72,7 +72,7 @@ class Parallelogram {
       let arrayIndex = rowClears[this.row].indexOf(this);
       if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
-          rowClears[this.row]splice(arrayIndex, 1);
+          rowClears[this.row].splice(arrayIndex, 1);
         }
       } else {
         if (arrayIndex < 0) {
