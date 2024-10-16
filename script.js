@@ -10,7 +10,7 @@ const speedY = 0.267;
 const speedMultiplier = 64;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
-const parallelogramCount = (rowCount / 2) * (window.innerWidth / 384);
+const parallelogramCount = (rowCount / 2) * (window.innerWidth / 512);
 let rowClears = [];
 
 //Debug
