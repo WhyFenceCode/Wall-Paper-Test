@@ -111,7 +111,7 @@ function spawnParallelogram() {
       spawnOptions.push(i);
     }
   }
-  new Parallelogram(Math.floor(Math.random() * spawnOptions.length));
+  new Parallelogram(spawnOptions[Math.floor(Math.random() * spawnOptions.length)]);
 }
 
 function initiateRowClears() {
