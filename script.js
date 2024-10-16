@@ -105,7 +105,13 @@ class Parallelogram {
 }
 
 function spawnParallelogram() {
-  console.log('Need to Spawn');
+  let spawnOptions = [];
+  for (let i = 0; i < rowClears.length; i++) {
+    if (!rowClears[i]) {
+      spawnOptions.push(i);
+    }
+  }
+  new Parallelogram(Math.floor(Math.random() * spawnOptions.length));
 }
 
 function initiateRowClears() {
