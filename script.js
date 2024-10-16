@@ -13,9 +13,6 @@ const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
 const parallelogramCount = (rowCount / 2) * (window.innerWidth / 512);
 let rowClears = [];
 
-//Debug
-console.log(parallelogramCount, rowCount);
-
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
