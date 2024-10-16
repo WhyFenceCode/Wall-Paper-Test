@@ -22,12 +22,6 @@ function heightOffset(x) {
   return y;
 }
 
-function removeByIndex(i, arrayToSlice) {
-  let halfBefore = arrayToSlice.slice(0, i);
-  let halfAfter = arrayToSlice.slice(i + 1);
-  return halfBefore.concat(halfAfter);
-}
-
 function movePositions(time, lastTime, xPos, yPos) {
   let deltaTime = (time - lastTime) / 1000;
   let newXPos = xPos + speedX * deltaTime * speedMultiplier;
@@ -78,7 +72,7 @@ class Parallelogram {
       let arrayIndex = rowClears[this.row].indexOf(this);
       if (this.xPos >= minimumSeperation) {
         if (arrayIndex > -1) {
-          rowClears[this.row] = removeByIndex(arrayIndex, rowClears[this.row]);
+          rowClears[this.row]splice(arrayIndex, 1);
         }
       } else {
         if (arrayIndex < 0) {
