@@ -49,7 +49,7 @@ class Parallelogram {
     this.width = randomNumber(parallelogramWidthMin, parallelogramWidthMax);
     this.height = parallelogramHeight;
     this.row = row;
-    this.yPos = this.row * rowHeight - upOffset;
+    this.yPos = this.row * rowHeight - upOffset - (this.width * 2 * speedY);
     this.xPos = -this.width*2;
     this.color = parallelogramColors[Math.floor(Math.random() * parallelogramColors.length)];
     this.lastTimestamp = null;
