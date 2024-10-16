@@ -101,11 +101,13 @@ class Parallelogram {
 function spawnParallelogram() {
   let spawnOptions = [];
   for (let i = 0; i < rowClears.length; i++) {
-    if (!rowClears[i]) {
+    if (rowClears[i].length === 0) {
       spawnOptions.push(i);
     }
   }
-  new Parallelogram(spawnOptions[Math.floor(Math.random() * spawnOptions.length)]);
+  const row = spawnOptions[Math.floor(Math.random() * spawnOptions.length)];
+  if (row === undefined) throw new Error('row should not be undefined here');
+  new Parallelogram(row);
 }
 
 function initiateRowClears() {
