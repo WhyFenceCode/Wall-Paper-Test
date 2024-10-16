@@ -4,8 +4,9 @@ const parallelogramColors = ['hsl(317 100% 54% / .7)', 'hsl(197 100% 54% / .7)']
 const parallelogramHeight = 32;
 const rowHeight = 48;
 const minimumSeperation = 32;
+const moveAngle = 32;
 const speedX = 1;
-const speedY = 0.624869;
+const speedY = heightOffset(speedX);
 const speedMultiplier = 36;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
@@ -16,7 +17,7 @@ function randomNumber(min, max) {
 }
 
 function heightOffset(x) {
-  let angle = 32 * (Math.PI / 180);
+  let angle = moveAngle * (Math.PI / 180);
   let y = x * Math.tan(angle);
   return y;
 }
