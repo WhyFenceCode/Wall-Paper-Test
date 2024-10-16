@@ -2,7 +2,6 @@ const parallelogramWidthMax = 320;
 const parallelogramWidthMin = 192;
 const parallelogramColors = ['hsl(317 100% 54% / .7)', 'hsl(197 100% 54% / .7)'];
 const parallelogramHeight = 32;
-const parallelogramCount = 48;
 const rowHeight = 48;
 const minimumSeperation = 32;
 const moveAngle = 32;
@@ -11,7 +10,11 @@ const speedY = 0.267;
 const speedMultiplier = 64;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
+const parallelogramCount = (rowCount/2) * (window.innerWidth / 512);
 let rowClears = [];
+
+//Debug
+console.log(parallelogramCount, rowCount);
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
