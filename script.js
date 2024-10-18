@@ -143,6 +143,7 @@ function initiateRowClears() {
 }
 
 function spawnAtStart() {
+  new LoadingProgress();
   spawnParallelogram();
   spawned++;
   console.log(spawned + "out of" + parallelogramCount);
