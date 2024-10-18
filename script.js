@@ -53,8 +53,6 @@ class Spawner {
     this.aggregateSpawns = 0;
     this.spawnedSoFar = 0;
 
-    console.log(this.aggregateSpawns);
-
     requestAnimationFrame(this.updatePosition.bind(this));
   }
 
@@ -67,6 +65,8 @@ class Spawner {
     let spawnAdd = this.spawnPerSecond * spawnDelta;
     
     this.aggregateSpawns += spawnAdd;
+
+    console.log(this.aggregateSpawns);
 
     if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
         spawnParallelogram();
