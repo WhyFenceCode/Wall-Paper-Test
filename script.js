@@ -69,10 +69,8 @@ class Spawner {
     this.aggregateSpawns += spawnAdd;
 
     if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
-      for (let i = 0; i < Math.floor(this.aggregateSpawns); i++) {
         spawnParallelogram();
-      }
-      this.spawnedSoFar += Math.floor(this.aggregateSpawns);
+      this.spawnedSoFar += 1;
       this.aggregateSpawns = 0;
     }
 
