@@ -45,6 +45,38 @@ function createParalelogram(color, width, height, left, top) {
   return document.body.insertBefore(div, document.body.firstChild);
 }
 
+class Spawner {
+  constructor(){
+    this.spawnTime = window.innerWidth / speedMultiplier;
+    this.spawnPerSecond = parallelogramCount/this.spawnTime;
+    this.lastTimestamp = null;
+    this.aggregateSpawns = 0;
+    this.deltaTime = 0;
+    this.spawnedSoFar = 0;
+
+    requestAnimationFrame(this.updatePosition.bind(this));
+  }
+
+  updatePosition(timestamp) {
+    if (!this.lastTimestamp) {
+      this.lastTimestamp = timestamp;
+    }
+    
+    this.deltaTime = (timestamp - this.lastTime) / 1000;
+    this.aggregateSpawns += this.spawnPerSecond * this.deltaTime;
+
+    if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
+      for (let i = 0; i < Math.floor(this.aggregateSpawns); i++) {
+        spawnParallelogram();
+      }
+      this.spawnedSoFar += Math.floor(this.aggregateSpawns);
+      this.aggregateSpawns = 0;
+    }
+
+    requestAnimationFrame(this.updatePosition.bind(this));
+  }
+}
+
 class Parallelogram {
   constructor(row, firstSpawn) {
     this.width = randomNumber(parallelogramWidthMin, parallelogramWidthMax);
@@ -56,25 +88,6 @@ class Parallelogram {
     this.lastTimestamp = null;
     this.element = createParalelogram(this.color, this.width, this.height, this.xPos, this.yPos);
     this.move = true;
-
-    if (firstSpawn) {
-      let xAdd = Math.random() * ((this.width * 3) + window.innerWidth);
-      let yAdd = xAdd * speedY;
-
-      this.xPos += xAdd;
-      this.yPos += yAdd;
-
-      let arrayIndex = rowClears[this.row].indexOf(this);
-      if (this.xPos >= minimumSeperation) {
-        if (arrayIndex > -1) {
-          rowClears[this.row].splice(arrayIndex, 1);
-        }
-      } else {
-        if (arrayIndex < 0) {
-          rowClears[this.row].push(this);
-        }
-      }
-    }
 
     if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
   }
@@ -118,7 +131,7 @@ class Parallelogram {
   }
 }
 
-function spawnParallelogram(firstSpawn) {
+function spawnParallelogram() {
   let spawnOptions = [];
   for (let i = 0; i < rowClears.length; i++) {
     if (rowClears[i].length === 0) {
@@ -127,7 +140,7 @@ function spawnParallelogram(firstSpawn) {
   }
   const row = spawnOptions[Math.floor(Math.random() * spawnOptions.length)];
   if (row === undefined) throw new Error('row should not be undefined here');
-  new Parallelogram(row, firstSpawn);
+  new Parallelogram(row);
 }
 
 function initiateRowClears() {
@@ -136,9 +149,4 @@ function initiateRowClears() {
   }
 }
 initiateRowClears();
-
-for (let i = 0; i < parallelogramCount; i++) {
-  spawnParallelogram(true);
-}
-
-//Add first spawn overlap protection
+new Spawner();
