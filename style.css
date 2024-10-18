@@ -6,5 +6,5 @@ body {
 
 .paralelogram {
   position: fixed;
-  transform: skew(64deg) rotate(32deg);
+  transform: rotate(32deg) skew(64deg);
 }
