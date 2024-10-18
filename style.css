@@ -8,23 +8,3 @@ body {
   position: fixed;
   transform: skew(64deg) rotate(32deg);
 }
-
-.loading-container {
-  width: 256px;
-  height: 16px;
-  position: fixed;
-  bottom: 32px;
-  right: 64px;
-  transform: skew(64deg);
-  border-bottom: 4px solid hsl(43 100% 54%);
-  border-top: 4px solid hsl(43 100% 54%);
-  border-left: 8px solid hsl(43 100% 54%);
-  border-right: 8px solid hsl(43 100% 54%);
-}
-
-.loading-progress {
-  height: 100%;
-  width: 50%;
-  background: hsl(43 100% 54%);
-  margin-left: auto;
-}
