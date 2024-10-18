@@ -14,6 +14,7 @@ const parallelogramCount = Math.ceil((rowCount / 3) * (window.innerWidth / 512) 
 let rowClears = [];
 let spawned = 0;
 let startSpawnsInterval = null;
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
@@ -45,6 +46,23 @@ function createParalelogram(color, width, height, left, top) {
   div.style.top = `${top}px`;
 
   return document.body.insertBefore(div, document.body.firstChild);
+}
+
+class Date {
+  constructor() {
+    this.element = document.getElementById("date");
+
+    requestAnimationFrame(this.updatePosition.bind(this));
+  }
+  updatePosition(timestamp) {
+    let d = new Date();
+    let data = months[d.getMonth()];
+    data = data + " " + d.getDate();
+
+    this.element.innerHTML = data;
+
+    requestAnimationFrame(this.updatePosition.bind(this));
+  }
 }
 
 class Parallelogram {
