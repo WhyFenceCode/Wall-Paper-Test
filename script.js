@@ -8,11 +8,12 @@ const moveAngle = 32;
 const speedX = 1;
 const speedY = 0.267;
 const speedMultiplier = 64;
-const deltaTimestampDecrease = 1000;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
 const parallelogramCount = (rowCount / 3) * (window.innerWidth / 512);
 let rowClears = [];
+let spawned = 0;
+let startSpawnsInterval = null;
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
@@ -44,38 +45,6 @@ function createParalelogram(color, width, height, left, top) {
   div.style.top = `${top}px`;
 
   return document.body.insertBefore(div, document.body.firstChild);
-}
-
-class Spawner {
-  constructor(){
-    this.spawnTime = (window.innerWidth + 3 * parallelogramWidthMax) / speedMultiplier;
-    this.spawnPerSecond = parallelogramCount/this.spawnTime;
-    this.lastTimestamp = null;
-    this.aggregateSpawns = 0;
-    this.spawnedSoFar = 0;
-
-    requestAnimationFrame(this.updatePosition.bind(this));
-  }
-
-  updatePosition(deltaTimestamp) {
-    if (!this.lastTimestamp) {
-      this.lastTimestamp = deltaTimestamp;
-    }
-    
-    let spawnDelta = (deltaTimestamp - this.lastTimestamp) / 1000 / deltaTimestampDecrease;
-    console.log(spawnDelta);
-    let spawnAdd = this.spawnPerSecond * spawnDelta;
-    
-    this.aggregateSpawns += spawnAdd;
-
-    if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
-        spawnParallelogram();
-      this.spawnedSoFar += 1;
-      this.aggregateSpawns = 0;
-    }
-
-    if (this.spawnedSoFar < parallelogramCount) requestAnimationFrame(this.updatePosition.bind(this));
-  }
 }
 
 class Parallelogram {
@@ -149,5 +118,19 @@ function initiateRowClears() {
     rowClears.push([]);
   }
 }
+
+function spawnAtStart() {
+  spawnParallelogram();
+  spawned++;
+  if (spawned >= parallelogramCount) {
+    clearInterval(startSpawnsInterval);
+  }
+}
+
+function startSpawning() {
+  spawnAtStart();
+  startSpawnsInterval = setInterval(spawnAtStart, 1000);
+}
+
 initiateRowClears();
-new Spawner();
+startSpawning();
