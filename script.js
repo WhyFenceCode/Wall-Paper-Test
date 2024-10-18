@@ -140,7 +140,7 @@ function initiateRowClears() {
 function spawnAtStart() {
   spawnParallelogram();
   spawned++;
-  console.log(spawned + " out of " + parallelogramCount + "spawned");
+  console.log(spawned + " out of" + parallelogramCount + " spawned");
   if (spawned >= parallelogramCount) {
     clearInterval(startSpawnsInterval);
   }
