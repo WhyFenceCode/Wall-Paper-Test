@@ -8,6 +8,7 @@ const moveAngle = 32;
 const speedX = 1;
 const speedY = 0.267;
 const speedMultiplier = 64;
+const deltaTimestampDecrease = 100;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
 const parallelogramCount = (rowCount / 3) * (window.innerWidth / 512);
@@ -61,7 +62,7 @@ class Spawner {
       this.lastTimestamp = deltaTimestamp;
     }
     
-    let spawnDelta = (deltaTimestamp - this.lastTimestamp) / 1000;
+    let spawnDelta = (deltaTimestamp - this.lastTimestamp) / 1000 / deltaTimestampDecrease;
     console.log(spawnDelta);
     let spawnAdd = this.spawnPerSecond * spawnDelta;
     
