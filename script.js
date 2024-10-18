@@ -62,11 +62,10 @@ class Spawner {
     }
     
     let spawnDelta = (deltaTimestamp - this.lastTimestamp) / 1000;
+    console.log(spawnDelta);
     let spawnAdd = this.spawnPerSecond * spawnDelta;
     
     this.aggregateSpawns += spawnAdd;
-
-    console.log(this.aggregateSpawns);
 
     if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
         spawnParallelogram();
