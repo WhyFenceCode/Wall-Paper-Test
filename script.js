@@ -55,7 +55,7 @@ function createParalelogram(color, width, height, left, top) {
   return document.body.insertBefore(div, document.body.firstChild);
 }
 
-class Date {
+class DateText {
   constructor() {
     this.element = document.getElementById("date");
 
@@ -151,7 +151,7 @@ function spawnAtStart() {
 }
 
 function startSpawning() {
-  new Date();
+  new DateText();
   spawnAtStart();
   startSpawnsInterval = setInterval(spawnAtStart, 1000);
 }
