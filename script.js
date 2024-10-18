@@ -62,11 +62,8 @@ class Date {
     requestAnimationFrame(this.updatePosition.bind(this));
   }
   updatePosition(timestamp) {
-    let d = new Date();
-    let data = months[d.getMonth()];
-    data = data + " " + d.getDate();
 
-    this.element.innerHTML = data;
+    setDateText(this.element);
 
     requestAnimationFrame(this.updatePosition.bind(this));
   }
