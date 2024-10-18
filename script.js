@@ -26,6 +26,13 @@ function heightOffset(x) {
   return y;
 }
 
+function setDateText(element){
+  let d = new Date();
+  let data = months[d.getMonth()];
+  data = data + " " + d.getDate();
+  element.innerHTML = data;
+}
+
 function movePositions(time, lastTime, xPos, yPos) {
   let deltaTime = (time - lastTime) / 1000;
   let newXPos = xPos + speedX * deltaTime * speedMultiplier;
