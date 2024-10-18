@@ -54,6 +54,8 @@ class Spawner {
     this.deltaTime = 0;
     this.spawnedSoFar = 0;
 
+    console.log(this.spawnPerSecond);
+
     requestAnimationFrame(this.updatePosition.bind(this));
   }
 
@@ -65,7 +67,7 @@ class Spawner {
     this.deltaTime = (timestamp - this.lastTime) / 1000;
     this.aggregateSpawns += this.spawnPerSecond * this.deltaTime;
 
-    console.log(aggregateSpawns);
+    console.log(this.aggregateSpawns);
 
     if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
       for (let i = 0; i < Math.floor(this.aggregateSpawns); i++) {
