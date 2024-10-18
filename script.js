@@ -27,9 +27,9 @@ function heightOffset(x) {
 }
 
 function setDateText(element){
-  let d = new Date();
-  let data = months[d.getMonth()];
-  data = data + " " + d.getDate();
+  let date = new Date();
+  let data = months[date.getMonth()];
+  data = data + " " + date.getDate();
   element.innerHTML = data;
 }
 
