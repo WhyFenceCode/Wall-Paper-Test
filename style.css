@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Blanka';
+  src: url('./fonts/blanka/Blanka.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0px;
   overflow: hidden;
@@ -7,4 +14,17 @@ body {
 .paralelogram {
   position: fixed;
   transform: skew(64deg) rotate(32deg);
+}
+
+.text {
+  font-family: "Blanka";
+  font-size: 5em;
+  letter-spacing: 0.2em;
+  color: rgba(192, 192, 192, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform-origin: center;
+  transform: translate(-50%, -110%);
+  text-shadow: 2px 3px 7px rgba(0, 0, 0, 0.45);
 }
