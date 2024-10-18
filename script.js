@@ -48,7 +48,7 @@ function createParalelogram(color, width, height, left, top) {
 
 class Spawner {
   constructor(){
-    this.spawnTime = window.innerWidth / speedMultiplier;
+    this.spawnTime = (window.innerWidth + 3 * parallelogramWidthMax) / speedMultiplier;
     this.spawnPerSecond = parallelogramCount/this.spawnTime;
     this.lastTimestamp = null;
     this.aggregateSpawns = 0;
