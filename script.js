@@ -61,7 +61,7 @@ class Spawner {
       this.lastTimestamp = deltaTimestamp;
     }
     
-    let spawnDelta = (deltaTimestamp - this.lastTimestamp) / 1000;
+    let spawnDelta = (deltaTimestamp - this.lastTimestamp);
     console.log(spawnDelta);
     let spawnAdd = this.spawnPerSecond * spawnDelta;
     
