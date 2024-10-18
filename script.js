@@ -65,6 +65,8 @@ class Spawner {
     this.deltaTime = (timestamp - this.lastTime) / 1000;
     this.aggregateSpawns += this.spawnPerSecond * this.deltaTime;
 
+    console.log(aggregateSpawns);
+
     if (this.aggregateSpawns >= 1 && this.spawnedSoFar < parallelogramCount) {
       for (let i = 0; i < Math.floor(this.aggregateSpawns); i++) {
         spawnParallelogram();
@@ -114,7 +116,7 @@ class Parallelogram {
       }
 
       if (this.xPos > window.innerWidth + this.width) {
-        spawnParallelogram(false);
+        spawnParallelogram();
         this.element.remove();
         this.move = false;
       }
