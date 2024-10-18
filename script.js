@@ -58,12 +58,12 @@ class Spawner {
     requestAnimationFrame(this.updatePosition.bind(this));
   }
 
-  updatePosition(timestamp) {
+  updatePosition(deltaTimestamp) {
     if (!this.lastTimestamp) {
-      this.lastTimestamp = timestamp;
+      this.lastTimestamp = deltaTimestamp;
     }
     
-    let spawnDelta = (timestamp - this.lastTime) / 1000;
+    let spawnDelta = (deltaTimestamp - this.lastTime) / 1000;
     let spawnAdd = this.spawnPerSecond * spawnDelta;
 
     console.log(spawnAdd);
