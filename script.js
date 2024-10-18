@@ -47,29 +47,6 @@ function createParalelogram(color, width, height, left, top) {
   return document.body.insertBefore(div, document.body.firstChild);
 }
 
-class LoadingProgress {
-  constructor(){
-    this.inner = document.querySelector(".loading-container");;
-    this.outer = document.querySelector(".loading-progress");;
-    this.opacity = 1;
-
-    requestAnimationFrame(this.updatePosition.bind(this));
-  }
-  
-  updatePosition(timestamp) {
-    let spawnPercent = spawned/parallelogramCount*100;
-    this.inner.style.width = spawnPercent + 'px';
-
-    if (spawnPercent < 99){
-      this.opacity -= 0.01;
-    }
-
-    this.outer.style.opacity = this.opacity;
-
-    requestAnimationFrame(this.updatePosition.bind(this));
-  }
-}
-
 class Parallelogram {
   constructor(row, firstSpawn) {
     this.width = randomNumber(parallelogramWidthMin, parallelogramWidthMax);
