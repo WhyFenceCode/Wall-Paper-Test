@@ -65,8 +65,6 @@ class Spawner {
     
     let spawnDelta = (deltaTimestamp - this.lastTimestamp) / 1000;
     let spawnAdd = this.spawnPerSecond * spawnDelta;
-
-    console.log(this.lastTime);
     
     this.aggregateSpawns += spawnAdd;
 
@@ -78,7 +76,7 @@ class Spawner {
       this.aggregateSpawns = 0;
     }
 
-    requestAnimationFrame(this.updatePosition.bind(this));
+    if (this.spawnedSoFar < parallelogramCount) requestAnimationFrame(this.updatePosition.bind(this));
   }
 }
 
