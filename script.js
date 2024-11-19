@@ -1,114 +1,160 @@
-//Constants
+const parallelogramWidthMax = 320;
+const parallelogramWidthMin = 192;
+const parallelogramColors = ['hsl(43 100% 54%)', 'hsl(197 100% 54%)'];
+const parallelogramHeight = 32;
+const rowHeight = 48;
+const minimumSeperation = 64;
+const moveAngle = 32;
+const speedX = 1;
+const speedY = 0.267;
+const speedMultiplier = 64;
+const upOffset = heightOffset(window.innerWidth);
+const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
+const parallelogramCount = Math.ceil((rowCount / 3) * (window.innerWidth / 512) * 1.2);
+let rowClears = [];
+let spawned = 0;
+let startSpawnsInterval = null;
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const textObject =   document.getElementById('date');
 
-//Animation
-class Parallelogram {
-  constructor(element, position, resetAmount) {
-    this.element = element;
-    this.speed = 24; // Speed in pixels per second
-    this.position = position;
-    this.resetAmount = resetAmount;
-    this.lastTimestamp = null;
-    
+function randomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function heightOffset(x) {
+  let angle = moveAngle * (Math.PI / 180);
+  let y = x * Math.tan(angle);
+  return y;
+}
+
+function setDateText(element){
+  let date = new Date();
+  let data = months[date.getMonth()];
+  data = data + " " + date.getDate();
+  element.innerHTML = data;
+}
+
+function movePositions(time, lastTime, xPos, yPos) {
+  let deltaTime = (time - lastTime) / 1000;
+  let newXPos = xPos + speedX * deltaTime * speedMultiplier;
+  let newYPos = yPos + speedY * deltaTime * speedMultiplier;
+
+  return [newXPos, newYPos];
+}
+
+function createParalelogram(color, width, height, left, top) {
+  let div = document.createElement('div');
+
+  div.classList.add('paralelogram');
+
+  div.style.setProperty('--color', color);
+  div.style.width = `${width}px`;
+  div.style.height = `${height}px`;
+  div.style.left = `${left}px`;
+  div.style.top = `${top}px`;
+
+  return document.body.insertBefore(div, document.body.firstChild);
+}
+
+class DateText {
+  constructor() {
+    this.element = document.getElementById("date");
+
     requestAnimationFrame(this.updatePosition.bind(this));
+  }
+  updatePosition(timestamp) {
+
+    setDateText(this.element);
+
+    requestAnimationFrame(this.updatePosition.bind(this));
+  }
+}
+
+class Parallelogram {
+  constructor(row, firstSpawn) {
+    this.width = randomNumber(parallelogramWidthMin, parallelogramWidthMax);
+    this.height = parallelogramHeight;
+    this.row = row;
+    this.yPos = this.row * rowHeight - upOffset - (this.width * 2 * speedY);
+    this.xPos = -(this.width * 2);
+    this.color = parallelogramColors[Math.floor(Math.random() * parallelogramColors.length)];
+    this.lastTimestamp = null;
+    this.element = createParalelogram(this.color, this.width, this.height, this.xPos, this.yPos);
+    this.move = true;
+
+    if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
   }
 
   updatePosition(timestamp) {
+    if (!this.lastTimestamp) {
+      this.lastTimestamp = timestamp;
+    }
+    
     if (timestamp) {
-      const delta = timestamp - (this.lastTimestamp || timestamp);
-      this.position += (this.speed * delta) / 1000; // Update position based on elapsed time
-      this.element.style.transform = `skew(64deg) rotate(32deg) translate(${this.position}px)`;
+      let posArray = movePositions(timestamp, this.lastTimestamp, this.xPos, this.yPos);
+      this.xPos = posArray[0];
+      this.yPos = posArray[1];
 
-      if (this.position > window.innerWidth) {
-        this.position = -this.resetAmount; // Reset to the start
+      let arrayIndex = rowClears[this.row].indexOf(this);
+      if (this.xPos >= minimumSeperation) {
+        if (arrayIndex > -1) {
+          rowClears[this.row].splice(arrayIndex, 1);
+        }
+      } else {
+        if (arrayIndex < 0) {
+          rowClears[this.row].push(this);
+        }
+      }
+
+      if (this.xPos > window.innerWidth + this.width) {
+        spawnParallelogram();
+        this.element.remove();
+        this.move = false;
+      }
+
+      if (this.move && this.element) {
+        this.element.style.left = this.xPos + 'px';
+        this.element.style.top = this.yPos + 'px';
       }
 
       this.lastTimestamp = timestamp;
     }
 
-    requestAnimationFrame(this.updatePosition.bind(this));
+    if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
   }
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
+function spawnParallelogram() {
+  let spawnOptions = [];
+  for (let i = 0; i < rowClears.length; i++) {
+    if (rowClears[i].length === 0) {
+      spawnOptions.push(i);
+    }
+  }
+  const row = spawnOptions[Math.floor(Math.random() * spawnOptions.length)];
+  if (row === undefined) throw new Error('row should not be undefined here');
+  new Parallelogram(row);
 }
 
-function getRandomFloat(min, max) {
-    return Math.random() * (max - min) + min;
-}
-
-// Function to create Parallelogram instances
-function createParallelograms() {
-  let parallelogramCount = window.innerHeight;
-  for(var i = 0; i < parallelogramCount; i++){
-    let parallelogramToCreate = document.createElement("div");
-    parallelogramToCreate.classList.add("parallelogram");
-    let newParallelogram = document.body.insertBefore(parallelogramToCreate, document.body.firstChild);
-    let upAmount = window.innerHeight*16;
-    upAmount -= 32*i;
-    newParallelogram.style.top = -upAmount+"px";
-    let newWidth = getRandomFloat(256, 512);
-    newParallelogram.style.width = newWidth+"px";
-    let newPosition = getRandomInt(window.innerWidth+20, -newParallelogram.style.width-20);
-    newParallelogram.setAttribute("data-position", newPosition);
-    //Paralelogram 2
-    let parallelogramToCreate2 = document.createElement("div");
-    parallelogramToCreate2.classList.add("parallelogram");
-    let newParallelogram2 = document.body.insertBefore(parallelogramToCreate2, document.body.firstChild);
-    let upAmount2 = window.innerHeight*16;
-    upAmount2 -= 32*i;
-    newParallelogram2.style.top = -upAmount2+"px";
-    let newWidth2 = getRandomFloat(192, 352);
-    newParallelogram2.style.width = newWidth2+"px";
-    let newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
-    let loopCount = 0;
-    do {
-      newPosition2 = getRandomInt(window.innerWidth+20, -newParallelogram2.style.width-20);
-      loopCount++;
-      if (loopCount > 50){
-        break;
-      }
-    } while (Math.abs(newPosition2 - newPosition) < (36+newWidth));
-    newParallelogram2.setAttribute("data-position", newPosition);
+function initiateRowClears() {
+  for (let i = 0; i < rowCount; i++) {
+    rowClears.push([]);
   }
 }
 
-// Function to create a new Parallelogram instance for each element
-function createParallelogramAnimations() {
-  const elements = document.querySelectorAll('.parallelogram');
-  elements.forEach(element => new Parallelogram(element, parseFloat(element.getAttribute("data-position")), parseFloat(element.style.width)+20.0));
+function spawnAtStart() {
+  spawnParallelogram();
+  spawned++;
+  console.log(spawned + " out of" + parallelogramCount + " spawned");
+  if (spawned >= parallelogramCount) {
+    clearInterval(startSpawnsInterval);
+  }
 }
 
-// Initial creation of parallelograms
-createParallelograms();
-createParallelogramAnimations();
-
-// Set up a MutationObserver to detect new parallelogram elements
-const observer = new MutationObserver(mutations => {
-  mutations.forEach(mutation => {
-    mutation.addedNodes.forEach(node => {
-      if (node.nodeType === Node.ELEMENT_NODE && node.classList.contains('parallelogram')) {
-        new Parallelogram(node, parseFloat(node.getAttribute("data-position")), parseFloat(node.style.width)+20.0);
-      }
-    });
-  });
-});
-
-// Start observing the document for changes in child elements
-observer.observe(document.body, {
-  childList: true,
-  subtree: true // Observe all child elements, not just direct children
-});
-
-//Date
-function setDateText(){
-  let d = new Date();
-  let data = months[d.getMonth()];
-  data = data + " " + d.getDate();
-  textObject.innerHTML = data;
+function startSpawning() {
+  new DateText();
+  spawnAtStart();
+  startSpawnsInterval = setInterval(spawnAtStart, 1000);
 }
 
-setDateText();
-setInterval(setDateText, 500);
+initiateRowClears();
+startSpawning();
