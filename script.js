@@ -46,7 +46,7 @@ function createParalelogram(color, width, height, left, top) {
 
   div.classList.add('paralelogram');
 
-  div.style..setProperty('--color', color);
+  div.style.setProperty('--color', color);
   div.style.width = `${width}px`;
   div.style.height = `${height}px`;
   div.style.left = `${left}px`;
