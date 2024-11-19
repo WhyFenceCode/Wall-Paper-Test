@@ -14,6 +14,7 @@ body {
 .paralelogram {
   position: fixed;
   transform: skew(64deg) rotate(32deg);
+  background: var(--color);
 }
 
 .text {
