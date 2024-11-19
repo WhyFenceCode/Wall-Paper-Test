@@ -19,6 +19,7 @@ body {
   position: fixed;
   transform: skew(64deg) rotate(32deg);
   background: hsl(0 0% 94%);
+  border-radius: 64px;
   box-shadow: 
     /* --- glow --- */
     /* outside */  0 0 var(--box-blur) var(--glow),
