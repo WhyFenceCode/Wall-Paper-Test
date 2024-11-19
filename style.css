@@ -15,9 +15,9 @@ body {
   --blur: 3rem;
   --box-blur: calc(0.5 * var(--blur));
   --in-blur: 1.5rem;
-  --glow: skew(64deg) var(--color);
+  --glow: var(--color);
   position: fixed;
-  transform: rotate(32deg);
+  transform: skew(64deg) rotate(32deg);
   background: hsl(0 0% 94%);
   border-radius: 16px;
   box-shadow: 
