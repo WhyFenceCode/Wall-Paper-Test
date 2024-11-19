@@ -22,7 +22,7 @@ body {
   box-shadow: 
     /* --- glow --- */
     /* outside */  0 0 var(--box-blur) var(--glow),
-    /* inside */  0 0 var(--in-blur) rgb(from var(--color) r g b / .5);
+    /* inside */  inset 0 0 var(--in-blur) rgb(from var(--color) r g b / .5);
 }
 
 .text {
