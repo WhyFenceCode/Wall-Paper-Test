@@ -12,15 +12,13 @@ body {
 }
 
 .paralelogram {
-  --blur: 1.75rem;
+  --blur: 3rem;
   --box-blur: calc(0.5 * var(--blur));
   --glow: var(--color);
   position: fixed;
   transform: skew(64deg) rotate(32deg);
   background: var(--color);
   box-shadow: 
-    /* --- "glass" tube --- */
-    /* outside */      0 0 0 2px rgba(0, 0, 0, 0.15),
     /* --- glow --- */
     /* outside */      0 0 var(--box-blur) var(--glow);
 }
