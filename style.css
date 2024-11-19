@@ -14,7 +14,7 @@ body {
 .paralelogram {
   --blur: 3rem;
   --box-blur: calc(0.5 * var(--blur));
-  --in-blur: 1rem;
+  --in-blur: 0.7rem;
   --glow: var(--color);
   position: fixed;
   transform: skew(64deg) rotate(32deg);
@@ -23,8 +23,10 @@ body {
   box-shadow: 
     /* --- glow --- */
     /* outside */  0 0 var(--box-blur) var(--glow),
-    /* outside */  0 0 var(--in-blur) rgb(from var(--color) r g b / .5),
-    /* inside */  inset 0 0 var(--in-blur) rgb(from var(--color) r g b / .5);
+    /* outside */  0 0 calc(var(--box-blur)/2) rgb(from var(--color) r g b / .5),
+    /* outside */  0 0 calc(var(--box-blur)*1.5) rgb(from var(--color) r g b / .3),
+    /* inside */  inset 0 0 var(--in-blur) rgb(from var(--color) r g b / .7),
+    /* inside */  inset 0 0 calc(var(--in-blur)*2) rgb(from var(--color) r g b / .3);
 }
 
 .text {
