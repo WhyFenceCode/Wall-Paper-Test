@@ -1,5 +1,5 @@
-const parallelogramWidthMax = 640;
-const parallelogramWidthMin = 256;
+const parallelogramWidthMax = 704;
+const parallelogramWidthMin = 192;
 const parallelogramColors = ['hsl(43 100% 54%)', 'hsl(197 100% 54%)'];
 const parallelogramHeight = 16;
 const rowHeight = 192;
