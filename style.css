@@ -12,19 +12,15 @@ body {
 }
 
 .paralelogram {
-  --blur: 3rem;
-  --box-blur: calc(0.5 * var(--blur));
-  --in-blur: 1.5rem;
-  --glow: var(--color);
-  position: fixed;
-  transform: skew(64deg) rotate(32deg);
-  background: hsl(0 0% 94%);
-  border-radius: 16px;
-  box-shadow: 
-    /* --- glow --- */
-    /* outside */  0 0 var(--box-blur) var(--glow),
-    /* outside */  0 0 var(--in-blur) rgb(from var(--color) r g b / .5),
-    /* inside */  inset 0 0 var(--in-blur) rgb(from var(--color) r g b / .5);
+    --blur: 3rem;
+    --box-blur: calc(0.5* var(--blur));
+    --in-blur: 1.5rem;
+    --glow: var(--color);
+    position: fixed;
+    transform: skew(64deg) rotate(32deg);
+    background: radial-gradient(circle, hsl(0 0% 94%) 20%, var(--color) 200%);
+    border-radius: 16px;
+    filter: drop-shadow(0px 0px 25px var(--color));
 }
 
 .text {
