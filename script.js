@@ -17,12 +17,12 @@ let startSpawnsInterval = null;
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let animate = true;
 
-window.onblur = function () {
-   animate = false;
-};
-window.onfocus = function () {
-   animate = true;
-};
+// window.onblur = function () {
+//    animate = false;
+// };
+// window.onfocus = function () {
+//    animate = true;
+// };
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
