@@ -15,14 +15,6 @@ let rowClears = [];
 let spawned = 0;
 let startSpawnsInterval = null;
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-let animate = true;
-
-// window.onblur = function () {
-//    animate = false;
-// };
-// window.onfocus = function () {
-//    animate = true;
-// };
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
@@ -45,11 +37,7 @@ function movePositions(time, lastTime, xPos, yPos) {
   let deltaTime = (time - lastTime) / 1000;
   let newXPos = xPos + speedX * deltaTime * speedMultiplier;
   let newYPos = yPos + speedY * deltaTime * speedMultiplier;
-  if (animate) {
-    return [newXPos, newYPos];
-  } else {
-    return [xPos, yPos];
-  }
+  return [newXPos, newYPos];
 }
 
 function createParalelogram(color, width, height, left, top) {
