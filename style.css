@@ -5,19 +5,25 @@
   font-style: normal;
 }
 
+* {
+  --color: #ecf0f3;
+  --shadow-light: #fff;
+  --shadow-dark: #d1d9e6;
+}
+
 body {
   margin: 0px;
   overflow: hidden;
-  background: #ecf0f3;
+  background: var(--color);
 }
 
 .paralelogram {
   position: fixed;
   transform: rotate(32deg);
-  background: #ecf0f3;
+  background: var(--color);
   border-radius: 16px;
-  -webkit-box-shadow: 4px 4px 8px #d1d9e6, -2px -2px 4px #fff;
-  box-shadow: 4px 4px 8px #d1d9e6, -2px -2px 4px #fff;
+  -webkit-box-shadow: 4px 4px 8px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
+  box-shadow: 4px 4px 8px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
 
 }
 
@@ -31,5 +37,5 @@ body {
   transform-origin: center;
   transform: translate(-50%, -110%);
   color: #ecf0f3;
-  text-shadow: 4px 4px 8px #d1d9e6, -2px -2px 4px #fff;
+  text-shadow: 4px 4px 8px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
 }
