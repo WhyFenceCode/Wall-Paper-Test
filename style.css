@@ -8,23 +8,17 @@
 body {
   margin: 0px;
   overflow: hidden;
-  background: hsl(0 0% 90%);
+  background: #ecf0f3;
 }
 
 .paralelogram {
-  --blur: 3rem;
-  --box-blur: calc(0.5 * var(--blur));
-  --in-blur: 1.5rem;
-  --glow: var(--color);
   position: fixed;
   transform: rotate(32deg);
-  background: hsl(0 0% 94%);
+  background: #ecf0f3;
   border-radius: 16px;
-  box-shadow: 
-    /* --- glow --- */
-    /* outside */  0 0 var(--box-blur) var(--glow),
-    /* outside */  0 0 var(--in-blur) rgb(from var(--color) r g b / .5),
-    /* inside */  inset 0 0 var(--in-blur) rgb(from var(--color) r g b / .55);
+  -webkit-box-shadow: 4px 4px 8px #d1d9e6, -2px -2px 4px #fff;
+  box-shadow: 4px 4px 8px #d1d9e6, -2px -2px 4px #fff;
+
 }
 
 .text {
