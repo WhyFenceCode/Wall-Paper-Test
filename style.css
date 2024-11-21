@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-* {
+:root {
   --color: #ecf0f3;
   --shadow-light: #fff;
   --shadow-dark: #d1d9e6;
