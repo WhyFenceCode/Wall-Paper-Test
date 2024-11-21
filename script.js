@@ -40,12 +40,11 @@ function movePositions(time, lastTime, xPos, yPos) {
   return [newXPos, newYPos];
 }
 
-function createParalelogram(color, width, height, left, top) {
+function createParalelogram(width, height, left, top) {
   let div = document.createElement('div');
 
   div.classList.add('paralelogram');
-
-  div.style.setProperty('--color', color);
+  
   div.style.width = `${width}px`;
   div.style.height = `${height}px`;
   div.style.left = `${left}px`;
@@ -75,9 +74,8 @@ class Parallelogram {
     this.row = row;
     this.yPos = this.row * rowHeight - upOffset - (this.width * 2 * speedY);
     this.xPos = -(this.width * 2);
-    this.color = parallelogramColors[Math.floor(Math.random() * parallelogramColors.length)];
     this.lastTimestamp = null;
-    this.element = createParalelogram(this.color, this.width, this.height, this.xPos, this.yPos);
+    this.element = createParalelogram(this.width, this.height, this.xPos, this.yPos);
     this.move = true;
 
     if (this.move) requestAnimationFrame(this.updatePosition.bind(this));
