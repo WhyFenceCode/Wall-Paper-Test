@@ -150,7 +150,7 @@ function spawnAtStart() {
 function startSpawning() {
   new DateText();
   spawnAtStart();
-  startSpawnsInterval = setInterval(spawnAtStart, 750);
+  startSpawnsInterval = setInterval(spawnAtStart, 1000);
 }
 
 initiateRowClears();
