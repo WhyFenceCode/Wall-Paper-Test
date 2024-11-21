@@ -10,7 +10,7 @@ const speedY = 0.62486;
 const speedMultiplier = 56;
 const upOffset = heightOffset(window.innerWidth);
 const rowCount = Math.ceil((window.innerHeight + upOffset) / rowHeight);
-const parallelogramCount = Math.ceil((rowCount / 3) * (window.innerWidth / 256) * 4.5);
+const parallelogramCount = Math.ceil((rowCount / 3) * (window.innerWidth / 256) * 3.2);
 let rowClears = [];
 let spawned = 0;
 let startSpawnsInterval = null;
@@ -150,7 +150,7 @@ function spawnAtStart() {
 function startSpawning() {
   new DateText();
   spawnAtStart();
-  startSpawnsInterval = setInterval(spawnAtStart, 1000);
+  startSpawnsInterval = setInterval(spawnAtStart, 500);
 }
 
 initiateRowClears();
