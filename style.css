@@ -46,6 +46,6 @@ body {
   left: 50%;
   transform-origin: center;
   transform: translate(-50%, -110%);
-  color: #ecf0f3;
+  color: var(--color);
   text-shadow: 4px 4px 8px var(--shadow-dark), -2px -2px 4px var(--shadow-light);
 }
