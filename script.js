@@ -16,6 +16,16 @@ let spawned = 0;
 let startSpawnsInterval = null;
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+const nth = (d) => {
+  if (d > 3 && d < 21) return 'TH';
+  switch (d % 10) {
+    case 1:  return "ST";
+    case 2:  return "ND";
+    case 3:  return "RD";
+    default: return "TH";
+  }
+};
+
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -29,7 +39,7 @@ function heightOffset(x) {
 function setDateText(element){
   let date = new Date();
   let data = months[date.getMonth()];
-  data = data + " " + date.getDate();
+  data = data + " " + date.getDate() + nth(date.getDate());
   element.innerHTML = data;
 }
 
