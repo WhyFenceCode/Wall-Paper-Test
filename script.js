@@ -14,7 +14,7 @@ const parallelogramCount = Math.ceil((rowCount / 3) * (window.innerWidth / 256) 
 let rowClears = [];
 let spawned = 0;
 let startSpawnsInterval = null;
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 function randomNumber(min, max) {
   return Math.random() * (max - min) + min;
@@ -29,7 +29,7 @@ function heightOffset(x) {
 function setDateText(element){
   let date = new Date();
   let data = months[date.getMonth()];
-  data = data + " " + date.getDate();
+  data = data + " " + date.getDate() + " " + date..getFullYear();;
   element.innerHTML = data;
 }
 
